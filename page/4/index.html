@@ -1,0 +1,806 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="敏于事而慎于言">
+<meta property="og:type" content="website">
+<meta property="og:title" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:url" content="https://luo1945049855.github.io/page/4/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="敏于事而慎于言">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/06/14/fontend/vue/" title="Vue" itemprop="url">Vue</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-06-13T16:00:00.000Z" itemprop="datePublished"> Published 2020-06-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h2><h2 id="Class-Bindings"><a href="#Class-Bindings" class="headerlink" title="Class Bindings"></a>Class Bindings</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div id=<span class="string">&quot;inlineClassBind&quot;</span> v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;&#123; active: isActive &#125;&quot;</span>&gt;Class Bind&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> active = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">&quot;#inlineClassBind&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            isActive: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">It will render:</span><br><span class="line"></span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;active&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;static&quot;</span></span><br><span class="line">  v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;&#123; active:isActive, &#x27;text-danger&#x27;: hasError &#125;&quot;</span></span><br><span class="line">&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line">    isActive: <span class="literal">true</span>,</span><br><span class="line">    hasError: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">It will render:</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;static active&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line">    isActive: <span class="literal">true</span>,</span><br><span class="line">    hasError: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line">It will render:</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;static active text-danger&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Style-Bindings"><a href="#Style-Bindings" class="headerlink" title="Style Bindings"></a>Style Bindings</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;style-binding&quot;</span> v-bind:style=<span class="string">&quot;&#123; color: activeColor, fontSize: fontSize + &#x27;px&#x27; &#125;&quot;</span>&gt;style bindings&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> titleStyleBinding = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">&quot;#title-style-binding&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            activeColor: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">            fontSize: <span class="number">30</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--object syntax--&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;style-binding-object&quot;</span> v-bind:style=<span class="string">&quot;styleObject&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> styleBindingObject = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">&quot;#style-binding-object&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            styleObject: &#123;</span><br><span class="line">                color: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">                fontSize: <span class="string">&#x27;13px&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*&lt;!--multiple values--&gt;*/</span></span><br><span class="line">&lt;div v-bind:style=<span class="string">&quot;&#123; display: [&#x27;-webkit-box&#x27;, &#x27;-ms-flexbox&#x27;, &#x27;flex&#x27;]&#125;&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*&lt;!--array syntax--&gt;*/</span></span><br><span class="line">&lt;div v-bind:style=<span class="string">&quot;[baseStyles, overridingStyles]&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Conditional-Rendering"><a href="#Conditional-Rendering" class="headerlink" title="Conditional Rendering"></a>Conditional Rendering</h2><h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 v-<span class="keyword">if</span>=<span class="string">&quot;awesome&quot;</span>&gt;Vue is awesome!&lt;/h1&gt;</span><br><span class="line">&lt;h1 v-<span class="keyword">else</span>&gt;Oh no it<span class="string">&#x27;s not!&lt;/h1&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="v-if-on-lt-template-gt"><a href="#v-if-on-lt-template-gt" class="headerlink" title="v-if on &lt;template&gt;"></a>v-if on <code>&lt;template&gt;</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">&quot;ok&quot;</span>&gt;</span><br><span class="line">    &lt;h1&gt;Title&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;Paragraph <span class="number">1</span>&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Paragraph <span class="number">2</span>&lt;/p&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-if-v-else-if-v-else"><a href="#v-if-v-else-if-v-else" class="headerlink" title="v-if/v-else-if/v-else"></a>v-if/v-else-if/v-else</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-<span class="keyword">if</span>=<span class="string">&quot;type === A&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;div v-<span class="keyword">else</span>-<span class="keyword">if</span>=<span class="string">&quot;type === B&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;div v-<span class="keyword">else</span>=<span class="string">&quot;type === C&quot;</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="controlling-reusable-elements-with-key"><a href="#controlling-reusable-elements-with-key" class="headerlink" title="controlling reusable elements with key"></a>controlling reusable elements with key</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">&quot;loginType === &#x27;username&#x27;&quot;</span>&gt;</span><br><span class="line">    &lt;lable&gt;Username&lt;/label&gt;</span><br><span class="line">    &lt;input placeholder=<span class="string">&quot;Enter your username&quot;</span>&gt;&lt;/input&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">    &lt;label&gt;Email&lt;/label&gt;</span><br><span class="line">    &lt;intput placeholder=<span class="string">&quot;Enter your email address&quot;</span>&gt;&lt;/input&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--<span class="keyword">in</span> <span class="built_in">this</span> condition placeholder is reused.--&gt;</span><br><span class="line">&lt;!--These two elements are completely separate when two unique <span class="string">`key`</span> are assigned.--&gt;</span><br><span class="line"></span><br><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">&quot;loginType === &#x27;username&#x27;&quot;</span>&gt;</span><br><span class="line">  &lt;label&gt;Username&lt;/label&gt;</span><br><span class="line">  &lt;input placeholder=<span class="string">&quot;Enter your username&quot;</span> key=<span class="string">&quot;username-input&quot;</span>&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">  &lt;label&gt;Email&lt;/label&gt;</span><br><span class="line">  &lt;input placeholder=<span class="string">&quot;Enter your email address&quot;</span> key=<span class="string">&quot;email-input&quot;</span>&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-if-VS-v-show"><a href="#v-if-VS-v-show" class="headerlink" title="v-if VS v-show"></a>v-if VS v-show</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 v-show=<span class="string">&quot;ok&quot;</span>&gt;Hello!&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The difference is that an element with <code>v-show</code> will always be rendered and remain in the DOM; <code>v-show only</code> toggles the <code>display</code> CSS property of the element.</p>
+<h3 id="v-if-with-v-for"><a href="#v-if-with-v-for" class="headerlink" title="v-if with v-for"></a>v-if with v-for</h3><p>using <code>v-if</code> and <code>v-for</code> together is not recommended.</p>
+<h2 id="Event-Handling"><a href="#Event-Handling" class="headerlink" title="Event Handling"></a>Event Handling</h2><h3 id="Listening-To-Events"><a href="#Listening-To-Events" class="headerlink" title="Listening To Events"></a>Listening To Events</h3><p><code>v-on</code> listen to DOM events.</p>
+<h3 id="Method-Event-Handlers"><a href="#Method-Event-Handlers" class="headerlink" title="Method Event Handlers"></a>Method Event Handlers</h3><h3 id="Event-Modifier"><a href="#Event-Modifier" class="headerlink" title="Event Modifier"></a>Event Modifier</h3><ul>
+<li>.stop</li>
+<li>.prevent</li>
+</ul>
+<!-- use capture mode when adding the event listener -->
+<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+
+<ul>
+<li>.capture</li>
+</ul>
+<!-- only trigger handler if event.target is the element itself -->
+<!-- i.e. not from a child element -->
+
+<ul>
+<li>.self</li>
+</ul>
+<!-- the click event will be triggered at most once -->
+
+<ul>
+<li>.once</li>
+</ul>
+<!-- the scroll event's default behavior (scrolling) will happen -->
+<!-- immediately, instead of waiting for `onScroll` to complete  -->
+<!-- in case it contains `event.preventDefault()`                -->
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-on:scroll.passive=<span class="string">&quot;onScroll&quot;</span>&gt;...&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>.passive</li>
+</ul>
+<p><code>Order matters</code> when using modifiers because the relevant code is generated in the same order.<br>Therefore using <code>v-on:click.prevent.self</code> will prevent <code>all clicks</code><br>while <code>v-on:click.self.prevent</code> will only prevent clicks <code>on the element itself</code>.</p>
+<h3 id="Key-Modifiers"><a href="#Key-Modifiers" class="headerlink" title="Key Modifiers"></a>Key Modifiers</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- only call <span class="string">`vm.submit()`</span> when the <span class="string">`key`</span> is <span class="string">`Enter`</span> --&gt;</span><br><span class="line">&lt;input v-on:keyup.enter=<span class="string">&quot;submit&quot;</span>&gt;&lt;/input&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="System-Modifier-Keys"><a href="#System-Modifier-Keys" class="headerlink" title="System Modifier Keys"></a>System Modifier Keys</h3><ul>
+<li>.ctrl</li>
+<li>.alt</li>
+<li>.shift</li>
+<li>.meta <!--Windows key/Command key--></li>
+</ul>
+<p>for example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--alt+c--&gt;</span><br><span class="line">&lt;intput @keyup.alt<span class="number">.67</span>=<span class="string">&quot;clear&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--Ctrl + Click--&gt;</span><br><span class="line">&lt;div @click.ctrl=<span class="string">&quot;doSomething&quot;</span>&gt;Do something&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="exact-Modifier"><a href="#exact-Modifier" class="headerlink" title=".exact Modifier"></a>.exact Modifier</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click.ctrl=<span class="string">&quot;onClick&quot;</span>&gt;A&lt;/button&gt;</span><br><span class="line">&lt;!--<span class="built_in">this</span> will fire even <span class="keyword">if</span> alt or shift is also pressed.--&gt;</span><br><span class="line">&lt;!--<span class="built_in">this</span> will only fire when Ctrl and no other keys are pressed.--&gt;</span><br><span class="line">&lt;button @click.ctrl.exact=<span class="string">&quot;onCtrlClick&quot;</span>&gt;B&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mouse-Button-Modifier"><a href="#Mouse-Button-Modifier" class="headerlink" title="Mouse Button Modifier"></a>Mouse Button Modifier</h3><ul>
+<li>.left</li>
+<li>.right</li>
+<li>.middle</li>
+</ul>
+<h2 id="Form-Input-Binding"><a href="#Form-Input-Binding" class="headerlink" title="Form Input Binding"></a>Form Input Binding</h2><p><code>v-model</code> can create two-way bindings on <code>form input</code>, <code>text area</code>, <code>select elements</code>.</p>
+<p><code>v-model</code> will ignore the initial <code>value</code>, <code>checked</code> or <code>selected</code> attributes found on any form elements.<br>You should declare the initial value on the JavaScript side, inside the <code>data</code> option of your component.</p>
+<h3 id="Binded-Properties-and-Events"><a href="#Binded-Properties-and-Events" class="headerlink" title="Binded Properties and Events"></a>Binded <code>Properties</code> and <code>Events</code></h3><p><code>v-model</code> internally uses different properties and emits different events for different input elements.</p>
+<ul>
+<li><code>text</code> and <code>textarea</code> elements use <code>value</code> property and <code>input</code> event.</li>
+<li><code>checkbox</code> and <code>radiobuttons</code> use <code>checked</code> property and <code>change</code> event.</li>
+<li><code>select fields</code> use <code>value</code> as a prop and <code>change</code> as an event.</li>
+</ul>
+<h3 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h3><h3 id="Multiline-Text"><a href="#Multiline-Text" class="headerlink" title="Multiline Text"></a>Multiline Text</h3><h3 id="Checkbox"><a href="#Checkbox" class="headerlink" title="Checkbox"></a>Checkbox</h3><h3 id="Radio"><a href="#Radio" class="headerlink" title="Radio"></a>Radio</h3><h3 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h3><h3 id="Modifiers"><a href="#Modifiers" class="headerlink" title="Modifiers"></a>Modifiers</h3><ul>
+<li>.lazy</li>
+</ul>
+<p><code>v-model</code> syncs the input with the data after each <code>input</code> event(with the exception of IME composition).<br>You can add the <code>lazy</code> modifiers to instead sync after <code>change</code> events.</p>
+<ul>
+<li>.number</li>
+<li>.trim</li>
+</ul>
+<h2 id="List-Rendering"><a href="#List-Rendering" class="headerlink" title="List Rendering"></a>List Rendering</h2><!--item in/of items-->
+<!--(item, index) in/of items-->
+<!--value in object-->
+<!--: -->
+<!--. :  -->
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=<span class="string">&quot;example&quot;</span>&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">&quot;item in items&quot;</span>&gt;</span><br><span class="line">        &#123;&#123; item.message &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul id=<span class="string">&quot;example-1&quot;</span>&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">&quot;(item, index) in items&quot;</span>&gt;</span><br><span class="line">        &#123;&#123; parentMessage &#125;&#125; - &#123;&#123; index &#125;&#125; - &#123;&#123; item.message &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;ul id=<span class="string">&quot;v-for-object&quot;</span>&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">&quot;value in object&quot;</span>&gt;</span><br><span class="line">        &#123;&#123; value &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--value, name--&gt;</span><br><span class="line">&lt;ul id=<span class="string">&quot;v-for-object-name-value&quot;</span>&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">&quot;(value, name) in object&quot;</span>&gt;</span><br><span class="line">        &#123;&#123; name &#125;&#125;: &#123;&#123; value &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--value, name, index--&gt;</span><br><span class="line">&lt;div v-<span class="keyword">for</span>=<span class="string">&quot;(value, name, index) in object&quot;</span>&gt;</span><br><span class="line">  &#123;&#123; index &#125;&#125;. &#123;&#123; name &#125;&#125;: &#123;&#123; value &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> example = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el:<span class="string">&quot;#example&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            items: [</span><br><span class="line">                &#123; <span class="attr">message</span>: <span class="string">&#x27;Foo&#x27;</span> &#125;,</span><br><span class="line">                &#123; <span class="attr">message</span>: <span class="string">&#x27;Bar&#x27;</span> &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el:<span class="string">&#x27;#example-1&#x27;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            parentMessage: <span class="string">&#x27;Parent&#x27;</span>,</span><br><span class="line">            items: [</span><br><span class="line">                &#123; <span class="attr">message</span>: <span class="string">&#x27;Foo&#x27;</span> &#125;,</span><br><span class="line">                &#123; <span class="attr">message</span>: <span class="string">&#x27;Bar&#x27;</span> &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">var</span> exampleVForObject = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">&quot;#v-for-object&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            title: <span class="string">&#x27;How to do lists in Vue&#x27;</span>,</span><br><span class="line">            author: <span class="string">&#x27;Jane Doe&#x27;</span>,</span><br><span class="line">            publishedAt: <span class="string">&#x27;2016-04-10&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Array-Change-Detection"><a href="#Array-Change-Detection" class="headerlink" title="Array Change Detection"></a>Array Change Detection</h3><p>Vue wraps an observed array’s mutation method so they will also trigger view updates, Include:</p>
+<ul>
+<li>push()</li>
+<li>pop()</li>
+<li>shift()       <!--remove first element from array and return that removed element--></li>
+<li>unshift()     <!--add one or more elements to the beginning of an array and return the new lengh of the array--></li>
+<li>splice()      <!--change the contents of an array by removing or replacing existing elements and/or adding new elements--></li>
+<li>sort()</li>
+<li>reverse()</li>
+</ul>
+<h3 id="Replacing-an-Array"><a href="#Replacing-an-Array" class="headerlink" title="Replacing an Array"></a>Replacing an Array</h3><p>example1.items = example1.item.filter(function (item) {<br>    return item.message.match(/Foo/)<br>})</p>
+<h3 id="Caveats"><a href="#Caveats" class="headerlink" title="Caveats"></a>Caveats</h3><p>Vue can’t detect the following changes to an array.</p>
+<ol>
+<li>set and item with the index, e.g. vm.item[indexOfItem] = newValue</li>
+<li>modify the length of the array, e.g. vm.item.length = newLength</li>
+<li>Vue can’t detect property addition or deletion, e.g.</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        a: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.b = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>solutions:</p>
+<ol>
+<li><p>caveat 1<br>Vue.Set(vm.items, indexOfItem, newValue)<br>vm.$set(vm.items, indexOfItem, newValue) <!--alias for Vue.Set--><br>vm.items.splice(indexOfItem, 1, newValue)</p>
+</li>
+<li><p>caveat 2<br>vm.items.splice(newLength)</p>
+</li>
+<li><p>caveat 3</p>
+</li>
+</ol>
+<p>Vue does not allow dynamically adding new <code>root-level</code> reactive properties to an already created instance.<br>However, it’t possible to add reactive properties to a nested object using the <code>Vue.set(object, propertyName, value)</code>. For example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        userProfile: &#123;</span><br><span class="line">            name: <span class="string">&#x27;Anika&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.set(vm.userProfile, <span class="string">&#x27;age&#x27;</span>, <span class="number">27</span>)</span><br><span class="line">vm.$set(vm.userProfile, <span class="string">&#x27;age&#x27;</span>, <span class="number">27</span>)  &lt;!--alias <span class="keyword">for</span> Vue.set--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Sometimes you may want to assign a number of new properties to an existing object, for example using Object.assign() or _.extend().<br>In such cases, you should create a fresh object with properties from both objects. So instead of:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(vm.userProfile, &#123;</span><br><span class="line">    age: <span class="number">27</span>,</span><br><span class="line">    favoriteColor: <span class="string">&#x27;Vue Green&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>you would add new, reactive properties with:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vm.userProfile = <span class="built_in">Object</span>.assign(&#123;&#125;, vm.userProfile, &#123;</span><br><span class="line">    age: <span class="number">27</span>,</span><br><span class="line">    favoriteColor: <span class="string">&#x27;Vue Green&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Display-Filtered-Sorted-Results"><a href="#Display-Filtered-Sorted-Results" class="headerlink" title="Display Filtered/Sorted Results"></a>Display Filtered/Sorted Results</h3><p>solution 1:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-<span class="keyword">for</span>=<span class="string">&quot;n in evenNumbers&quot;</span>&gt;&#123;&#123; n &#125;&#125;&lt;/li&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> evenNumbers = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        numbers: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    computed: &#123;</span><br><span class="line">        evenNumbers: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>solution 2(where computed properties are not feasible):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-<span class="keyword">for</span>=<span class="string">&quot;n in even(numberse&quot;</span>&gt;&#123;&#123; n &#125;&#125;&lt;/li&gt;</span><br><span class="line">methods: &#123;</span><br><span class="line">    even : <span class="function"><span class="keyword">function</span> (<span class="params">numbers</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-for-with-a-Range"><a href="#v-for-with-a-Range" class="headerlink" title="v-for with a Range"></a>v-for with a Range</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span v-<span class="keyword">for</span>=<span class="string">&quot;n in 10&quot;</span>&gt;&#123;&#123; n &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-for-on-a-lt-template-gt"><a href="#v-for-on-a-lt-template-gt" class="headerlink" title="v-for on a &lt;template&gt;"></a>v-for on a <code>&lt;template&gt;</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;template v-<span class="keyword">for</span>=<span class="string">&quot;item in items&quot;</span>&gt;</span><br><span class="line">    &lt;li&gt;&#123;&#123; item.msg &#125;&#125;&lt;/li&gt;</span><br><span class="line">    &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;divider&quot;</span> role=<span class="string">&quot;presentation&quot;</span>&gt;&lt;/li&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-for-and-v-if"><a href="#v-for-and-v-if" class="headerlink" title="v-for and v-if"></a>v-for and v-if</h3><p>It’s not recommended to use v-for and v-if together.<br>When they exist on the same node, v-for has a higher priority than v-if.</p>
+<h3 id="v-for-with-a-Component"><a href="#v-for-with-a-Component" class="headerlink" title="v-for with a Component"></a>v-for with a Component</h3><p>a <code>key</code> is now required.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;my-component v-<span class="keyword">for</span>=<span class="string">&quot;item in items&quot;</span> :key=<span class="string">&quot;item.id&quot;</span></span><br><span class="line">    v-<span class="keyword">for</span>=<span class="string">&quot;(item, index) in items&quot;</span></span><br><span class="line">    v-bind:item=<span class="string">&quot;item&quot;</span></span><br><span class="line">    v-bind:index=<span class="string">&quot;index&quot;</span></span><br><span class="line">    v-bind:key=<span class="string">&quot;item.id&quot;</span></span><br><span class="line">&gt;&lt;/my-component&gt;</span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/06/13/fontend/es6/" title="ES6" itemprop="url">ES6</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-06-13T12:19:09.000Z" itemprop="datePublished"> Published 2020-06-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="let命令"><a href="#let命令" class="headerlink" title="let命令"></a><code>let</code>命令</h2><p><code>let</code>类似与<code>var</code>, 但是let所生明的变量，只在let所在的作用域内有效。</p>
+<ol>
+<li>不存在变量提升</li>
+</ol>
+<p>let要先声明，后使用。否则报错。<br>var先使用再声明，值为undefined。</p>
+<ol start="2">
+<li>暂时性死区</li>
+</ol>
+<p>暂时性死区意味着<code>typeof</code>不再是百分之百安全操作。<br>ES6明确规定，如果区块内存在let或const命令，这些命令声明的变量，从一开始就形成了封闭作用域，凡是在声明前使用，就会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmp = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    tmp = <span class="string">&#x27;abc&#x27;</span>; <span class="comment">// ReferenceError.</span></span><br><span class="line">    <span class="keyword">typeof</span> tmp; <span class="comment">// ReferenceError.</span></span><br><span class="line">    <span class="keyword">typeof</span> undefined_variable; <span class="comment">// undefined.</span></span><br><span class="line">    <span class="keyword">let</span> tmp;</span><br><span class="line">    <span class="built_in">console</span>.log(tmp); <span class="comment">// undefined.</span></span><br><span class="line">    tmp = <span class="number">123</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(tmp); <span class="comment">// 123.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = x; <span class="comment">// ok.</span></span><br><span class="line"><span class="keyword">let</span> x = x; <span class="comment">// error.</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>let不允许重复声明</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arg; <span class="comment">// arg is duplicate.</span></span><br><span class="line">&#125;</span><br><span class="line">func() <span class="comment">// error.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="const命令"><a href="#const命令" class="headerlink" title="const命令"></a><code>const</code>命令</h2><p>const声明一个只读的常量，一旦声明，变量的值就不能改变。</p>
+<p>const作用域与let命令相同：只在声明所在的块级作用域内有效。</p>
+<p>const命令声明的变量也是不提升、存在暂时性死区，只能在声明的位置后面使用。</p>
+<p>const命令与let一样不能重复。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PI = <span class="number">3.1415</span>;</span><br><span class="line">PI = <span class="number">3</span>; <span class="comment">// error</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> MAX = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line">MAX <span class="comment">// Uncaught ReferenceError: MAX is not defined.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(MAX); <span class="comment">// ReferenceError</span></span><br><span class="line">    <span class="keyword">const</span> MAX = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/06/13/fontend/css/" title="CSS" itemprop="url">CSS</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-06-13T12:19:09.000Z" itemprop="datePublished"> Published 2020-06-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="css三种写法，优先级（内联式-gt-嵌入式-gt-外部式）"><a href="#css三种写法，优先级（内联式-gt-嵌入式-gt-外部式）" class="headerlink" title="css三种写法，优先级（内联式&gt;嵌入式&gt;外部式）"></a>css三种写法，优先级（内联式&gt;嵌入式&gt;外部式）</h2><ol>
+<li><p>内联式：写在html标签中。</p>
+<p> <code>&lt;p&gt;&lt;span style=&quot;color:red&quot;&gt;内联式&lt;/span&gt;&lt;/p&gt;</code></p>
+</li>
+<li><p>嵌入式：写在当前文件中。</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    <span class="selector-tag">span</span>&#123;</span><br><span class="line">        <span class="attribute">color</span>:blue;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;span&gt;嵌入式&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>外部式：写在外部文件中。</p>
+<p> <code>&lt;link href=&quot;base.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</code></p>
+</li>
+</ol>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><pre><code>1. 嵌入式写在外部式之后
+2. 相同权值
+</code></pre>
+<h2 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h2><p>其实就是html代码中的标签。如html、body、h1、p、img。</p>
+<h2 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h2><p>.类选器名称{css样式代码;}</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    <span class="selector-class">.setGreen</span>&#123;</span><br><span class="line">        <span class="attribute">color</span>:green;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;span class=&quot;setGreen&quot;&gt;类选择器&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ID选择器"><a href="#ID选择器" class="headerlink" title="ID选择器"></a>ID选择器</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    <span class="selector-id">#setGreen</span>&#123;</span><br><span class="line">        <span class="attribute">color</span>:green;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;span id=&quot;setGreen&quot;&gt;ID选择器&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类选择器和ID选择器区别"><a href="#类选择器和ID选择器区别" class="headerlink" title="类选择器和ID选择器区别"></a>类选择器和ID选择器区别</h2><ul>
+<li><p>类选择器可以多次使用，ID选择器不可。</p>
+</li>
+<li><p>类选择器可以多个同时使用，ID选择器不可。</p>
+<h2 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h2></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line"> <span class="selector-class">.food</span>&gt;<span class="selector-tag">li</span>&#123;<span class="attribute">color</span>:white; <span class="attribute">border</span>:<span class="number">1px</span> solid red;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;ul class=&quot;food&quot;&gt;</span><br><span class="line">    &lt;<span class="selector-tag">li</span>&gt;水果</span><br><span class="line">        &lt;<span class="selector-tag">ul</span>&gt;</span><br><span class="line">            &lt;li&gt;香蕉&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;苹果&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &lt;<span class="selector-tag">li</span>&gt;蔬菜</span><br><span class="line">        &lt;<span class="selector-tag">ul</span>&gt;</span><br><span class="line">            &lt;li&gt;香蕉&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;苹果&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="包含（后代）选择器"><a href="#包含（后代）选择器" class="headerlink" title="包含（后代）选择器"></a>包含（后代）选择器</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line"> <span class="selector-class">.first</span> <span class="selector-tag">li</span>&#123;<span class="attribute">color</span>:white; <span class="attribute">border</span>:<span class="number">1px</span> solid red;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;ul class=&quot;first&quot;&gt;</span><br><span class="line">    &lt;<span class="selector-tag">li</span>&gt;水果</span><br><span class="line">        &lt;<span class="selector-tag">ul</span>&gt;</span><br><span class="line">            &lt;li&gt;香蕉&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;苹果&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &lt;<span class="selector-tag">li</span>&gt;蔬菜</span><br><span class="line">        &lt;<span class="selector-tag">ul</span>&gt;</span><br><span class="line">            &lt;li&gt;香蕉&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;苹果&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通用选择器"><a href="#通用选择器" class="headerlink" title="通用选择器"></a>通用选择器</h2><p><code>*&#123;color:red;&#125;</code></p>
+<h2 id="伪类选择符"><a href="#伪类选择符" class="headerlink" title="伪类选择符"></a>伪类选择符</h2><p>给html不存在的标签设置样式，如</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">        <span class="attribute">color</span>:red;</span><br><span class="line">        <span class="attribute">font-size</span>:<span class="number">20px</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;a href=&quot;http://www.google.com&quot;&gt;Google&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分组选择符"><a href="#分组选择符" class="headerlink" title="分组选择符"></a>分组选择符</h2><p>为浏览器中多个标签设置同一样式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">span</span>&#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">span</span>&#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line"><span class="selector-class">.first</span>,<span class="selector-id">#second</span> <span class="selector-tag">span</span>&#123;<span class="attribute">color</span>:green;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;p class=&quot;first&quot;&gt;三年级时，我还是一个&lt;span&gt;胆小如鼠&lt;/span&gt;的小女孩，上课从来不敢回答老师提出的问题，生怕回答错了老师会批评我。就一直没有这个勇气来回答老师提出的问题。学校举办的活动我也没勇气参加。&lt;/p&gt;</span><br><span class="line">&lt;p id=&quot;second&quot;&gt;到了三年级下学期时，我们班上了一节公开课，老师提出了一个很&lt;span&gt;简单&lt;/span&gt;的问题，班里很多同学都举手了，甚至成绩比我差很多的，也举手了，还说着：&quot;我来，我来。&quot;我环顾了四周，就我没有举手。&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>CSS的某些样式具有继承性，它允许样式不仅应用于某个特定的html标签元素，而且应用于其后代。</p>
+<p><code>p&#123;color:red;&#125;</code>具有继承性；<br><code>p&#123;border:1px solid red;&#125;</code>不具有继承性。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/06/13/fontend/html/" title="HTML" itemprop="url">HTML</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-06-13T12:19:09.000Z" itemprop="datePublished"> Published 2020-06-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="head-tag"><a href="#head-tag" class="headerlink" title="head tag"></a>head tag</h2><h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span> <span class="comment">&lt;!--paragraph段落--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>斜体<span class="tag">&lt;/<span class="name">em</span>&gt;</span> <span class="comment">&lt;!--emphasis强调--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>加粗<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> <span class="comment">&lt;!--加粗--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>一级标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>二级标题<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>三级标题<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span>四级标题<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h5</span>&gt;</span>五级标题<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h6</span>&gt;</span>六级标题<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="块"><a href="#块" class="headerlink" title="块"></a>块</h2><p><code>&lt;span&gt;span标签是没有语义的，目的是设置单独的样式&lt;/span&gt;</code></p>
+<h2 id="短引用"><a href="#短引用" class="headerlink" title="短引用"></a>短引用</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">q</span>&gt;</span>引用内容<span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">换<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">行<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">的内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="横线"><a href="#横线" class="headerlink" title="横线"></a>横线</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">横</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">线</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span><br><span class="line">的内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h2><p><code>空&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;格</code></p>
+<h2 id="长引用"><a href="#长引用" class="headerlink" title="长引用"></a>长引用</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span></span><br><span class="line">青青园中葵，朝露待日晞。<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">阳春布德泽，万物生光辉。<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">常恐秋节至，焜黄华叶衰。<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">百川东到海，何时复西归。<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">少壮不努力，老大徒伤悲。<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span> <span class="comment">&lt;!--长引用--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="联系地址：-lt-各种地址-gt"><a href="#联系地址：-lt-各种地址-gt" class="headerlink" title="联系地址：&lt;!--各种地址--&gt;"></a>联系地址：<code>&lt;!--各种地址--&gt;</code></h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span>北京市海淀区<span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span>luo1945049855@gmail.com<span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="单行代码"><a href="#单行代码" class="headerlink" title="单行代码"></a>单行代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我们可能知道水平渐变的实现，类似这样：<span class="tag">&lt;<span class="name">code</span>&gt;</span>&#123;background-image:linear-gradient(left, red 100px, yellow 200px);&#125;<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="预处理-lt-pre-gt"><a href="#预处理-lt-pre-gt" class="headerlink" title="预处理&lt;pre&gt;"></a>预处理<code>&lt;pre&gt;</code></h2><p>常用于处理代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre&gt;</span><br><span class="line"><span class="keyword">var</span> msg = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"><span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">    alert(msg);</span><br><span class="line">&#125;</span><br><span class="line">&lt;pre&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>这是我的第一个列表<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>我的第一个列表信息<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p><code>&lt;div id=&quot;div_id&quot;&gt;这是一个模块&lt;/div&gt;</code></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-tag">table</span> <span class="selector-tag">tr</span> <span class="selector-tag">td</span>,<span class="selector-tag">th</span>&#123;<span class="attribute">border</span>:<span class="number">1px</span> solid blue;&#125;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">summary</span>=<span class="string">&quot;员工信息登记&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">caption</span>&gt;</span>员工信息登记表<span class="tag">&lt;/<span class="name">caption</span>&gt;</span><span class="comment">&lt;!--为表格添加标题--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>性别<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>10<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.google.com&quot;</span> <span class="attr">title</span>=<span class="string">&quot;Goolge&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;mailto:yy@qq.com?cc=cc@qq.com&amp;bcc=bcc@qq.com&amp;subject=测试邮箱&amp;body=这是内容&quot;</span> <span class="attr">title</span>=<span class="string">&quot;发送邮件给我&quot;</span>&gt;</span>点击发送<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;当图片下载失败时可见&quot;</span> <span class="attr">title</span>=<span class="string">&quot;图片标题（tooltip功能)&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="表单form"><a href="#表单form" class="headerlink" title="表单form"></a>表单form</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--method: get/post action: 浏览者输入的数据被传送到的地方--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;save.php&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>账户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;zhangsan&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>密码：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;pass&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1234&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;确定&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;清空&quot;</span> <span class="attr">name</span>=<span class="string">&quot;reset&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>联系我们<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">cols</span>=<span class="string">&quot;50&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;10&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span> <span class="comment">&lt;!--文本域--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--单选框--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>性别<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--for属性关联label与radio--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;male&quot;</span>&gt;</span>男<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">id</span>=<span class="string">&quot;male&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;female&quot;</span>&gt;</span>女<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">id</span>=<span class="string">&quot;female&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--复选框--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>兴趣<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;id_basketball&quot;</span>&gt;</span>篮球：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;basketball&quot;</span> <span class="attr">id</span>=<span class="string">&quot;id_basketball&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;id_football&quot;</span>&gt;</span>足球：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;football&quot;</span> <span class="attr">id</span>=<span class="string">&quot;id_football&quot;</span> <span class="attr">value</span>=<span class="string">&quot;football&quot;</span> <span class="attr">checked</span> /&gt;</span> <span class="comment">&lt;!--value为提交到服务器的值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>兴趣：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">multiple</span>=<span class="string">&quot;multiple&quot;</span>&gt;</span><span class="comment">&lt;!--多选--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>&gt;</span>篮球<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span>&gt;</span>足球<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;3&quot;</span> <span class="attr">selected</span>=<span class="string">&quot;selected&quot;</span>&gt;</span>F1<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="DOCTYPE"><a href="#DOCTYPE" class="headerlink" title="DOCTYPE"></a>DOCTYPE</h2><p>document type declaration(DTD)</p>
+<!DOCTYPE><p>是HTML中的第一个标签。用来通知浏览器网页的HTML版本。</p>
+<h3 id="在HTML4-01中，有三种-lt-DOCTYPE-gt-声明。"><a href="#在HTML4-01中，有三种-lt-DOCTYPE-gt-声明。" class="headerlink" title="在HTML4.01中，有三种&lt;!DOCTYPE&gt;声明。"></a>在HTML4.01中，有三种<code>&lt;!DOCTYPE&gt;</code>声明。</h3><ol>
+<li><p>HTML4.01Strict: This DTD contains all HTML elements and attributes, but does NOT INCLUDE presentational or deprecated elements (like font). Framesets are not allowed.</p>
+</li>
+<li><p>HTML 4.01 Transitional: This DTD contains all HTML elements and attributes, INCLUDING presentational and deprecated elements (like font). Framesets are not allowed.</p>
+</li>
+<li><p>HTML 4.01 Frameset: This DTD is equal to HTML 4.01 Transitional, but allows the use of frameset content.</p>
+</li>
+</ol>
+<h3 id="在HTML5中，只有一种声明，即：-lt-DOCTYPE-html-gt"><a href="#在HTML5中，只有一种声明，即：-lt-DOCTYPE-html-gt" class="headerlink" title="在HTML5中，只有一种声明，即：&lt;!DOCTYPE html&gt;"></a>在HTML5中，只有一种声明，即：<code>&lt;!DOCTYPE html&gt;</code></h3>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2000/01/01/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished"> Published 2000-01-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

@@ -1,0 +1,424 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Protocol | 业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="IPv4Internet Protocol version 4. IPv4, which we often denote as just IP, has been theworkhorse protocol of the IP suite since the early 1980s. It uses 32-bitaddresses (Section A.4). IPv4 provides pack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Protocol">
+<meta property="og:url" content="https://luo1945049855.github.io/2020/09/09/network/transport_layer/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="IPv4Internet Protocol version 4. IPv4, which we often denote as just IP, has been theworkhorse protocol of the IP suite since the early 1980s. It uses 32-bitaddresses (Section A.4). IPv4 provides pack">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-29T14:57:31.698Z">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/network/transport_layer/" title="Protocol" itemprop="url">Protocol</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv4"><span class="toc-number">1.</span> <span class="toc-text">IPv4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6"><span class="toc-number">2.</span> <span class="toc-text">IPv6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP"><span class="toc-number">3.</span> <span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP"><span class="toc-number">4.</span> <span class="toc-text">UDP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SCTP"><span class="toc-number">5.</span> <span class="toc-text">SCTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMP"><span class="toc-number">6.</span> <span class="toc-text">ICMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IGMP"><span class="toc-number">7.</span> <span class="toc-text">IGMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARP"><span class="toc-number">8.</span> <span class="toc-text">ARP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RARP"><span class="toc-number">9.</span> <span class="toc-text">RARP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMPv6"><span class="toc-number">10.</span> <span class="toc-text">ICMPv6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BPF"><span class="toc-number">11.</span> <span class="toc-text">BPF</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="IPv4"><a href="#IPv4" class="headerlink" title="IPv4"></a>IPv4</h2><p>Internet Protocol version 4. IPv4, which we often denote as just IP, has been the<br>workhorse protocol of the IP suite since the early 1980s. It uses 32-bit<br>addresses (Section A.4). IPv4 provides packet delivery service for TCP, UDP,<br>SCTP, ICMP, and IGMP.</p>
+<h2 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h2><p>Internet Protocol version 6. IPv6 was designed in the mid-1990s as a replace-<br>ment for IPv4. The major change is a larger address comprising 128 bits (Sec-<br>tion A.5), to deal with the explosive growth of the Internet in the 1990s. IPv6<br>provides packet delivery service for TCP, UDP, SCTP, and ICMPv6.<br>We often use the word ‘‘IP’’ as an adjective, as in IP layer and IP address, when<br>the distinction between IPv4 and IPv6 is not needed.</p>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>Transmission Control Protocol. TCP is a connection-oriented protocol that pro-<br>vides a reliable, full-duplex byte stream to its users. TCP sockets are an<br>example of stream sockets. TCP takes care of details such as acknowledg-<br>ments, timeouts, retransmissions, and the like. Most Internet application pro-<br>grams use TCP. Notice that TCP can use either IPv4 or IPv6.</p>
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p>User Datagram Protocol. UDP is a connectionless protocol, and UDP sockets<br>are an example of datagram sockets. There is no guarantee that UDP data-<br>grams ever reach their intended destination. As with TCP, UDP can use<br>either IPv4 or IPv6.</p>
+<h2 id="SCTP"><a href="#SCTP" class="headerlink" title="SCTP"></a>SCTP</h2><p>Stream Control Transmission Protocol. SCTP is a connection-oriented protocol<br>that provides a reliable full-duplex association. The word ‘‘association’’ is used<br>when referring to a connection in SCTP because SCTP is multihomed, involv-<br>ing a set of IP addresses and a single port for each side of an association.<br>SCTP provides a message service, which maintains record boundaries. As<br>with TCP and UDP, SCTP can use either IPv4 or IPv6, but it can also use both<br>IPv4 and IPv6 simultaneously on the same association.</p>
+<h2 id="ICMP"><a href="#ICMP" class="headerlink" title="ICMP"></a>ICMP</h2><p>Internet Control Message Protocol. ICMP handles error and control information<br>between routers and hosts. These messages are normally generated by and<br>processed by the TCP/IP networking software itself, not user processes,<br>although we show the ping and traceroute programs, which use ICMP.<br>We sometimes refer to this protocol as ICMPv4 to distinguish it from<br>ICMPv6.</p>
+<h2 id="IGMP"><a href="#IGMP" class="headerlink" title="IGMP"></a>IGMP</h2><p>Internet Group Management Protocol. IGMP is used with multicasting (Chap-<br>ter 21), which is optional with IPv4.</p>
+<h2 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h2><p>Address Resolution Protocol. ARP maps an IPv4 address into a hardware<br>address (such as an Ethernet address). ARP is normally used on broadcast<br>networks such as Ethernet, token ring, and FDDI, and is not needed on point-<br>to-point networks.</p>
+<h2 id="RARP"><a href="#RARP" class="headerlink" title="RARP"></a>RARP</h2><p>Reverse Address Resolution Protocol. RARP maps a hardware address into an<br>IPv4 address. It is sometimes used when a diskless node is booting.</p>
+<h2 id="ICMPv6"><a href="#ICMPv6" class="headerlink" title="ICMPv6"></a>ICMPv6</h2><p>Internet Control Message Protocol version 6. ICMPv6 combines the functionality<br>of ICMPv4, IGMP, and ARP.</p>
+<h2 id="BPF"><a href="#BPF" class="headerlink" title="BPF"></a>BPF</h2><p>BSD packet filter. This interface provides access to the datalink layer. It is nor-<br>mally found on Berkeley-derived kernels.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Network/">Network</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/09/09/network/tcp_establish_terminate/" title="TCP Connection Establish and Terminate">
+  <strong>上一篇：</strong><br/>
+  <span>
+  TCP Connection Establish and Terminate</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/09/09/math/curve/"  title="Curve">
+ <strong>下一篇：</strong><br/> 
+ <span>Curve
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv4"><span class="toc-number">1.</span> <span class="toc-text">IPv4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6"><span class="toc-number">2.</span> <span class="toc-text">IPv6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP"><span class="toc-number">3.</span> <span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP"><span class="toc-number">4.</span> <span class="toc-text">UDP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SCTP"><span class="toc-number">5.</span> <span class="toc-text">SCTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMP"><span class="toc-number">6.</span> <span class="toc-text">ICMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IGMP"><span class="toc-number">7.</span> <span class="toc-text">IGMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARP"><span class="toc-number">8.</span> <span class="toc-text">ARP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RARP"><span class="toc-number">9.</span> <span class="toc-text">RARP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMPv6"><span class="toc-number">10.</span> <span class="toc-text">ICMPv6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BPF"><span class="toc-number">11.</span> <span class="toc-text">BPF</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

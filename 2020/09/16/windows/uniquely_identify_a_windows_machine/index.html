@@ -1,0 +1,426 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Way to uniquely identify a windows machine | 业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="MAC addressUsing MAC address to identify a computer isn’t reliable. Because each computer can easily have multiple MAC address from multiple network adapters(Ethernet, Wi-Fi, Bluetooth, even virtual n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Way to uniquely identify a windows machine">
+<meta property="og:url" content="https://luo1945049855.github.io/2020/09/16/windows/uniquely_identify_a_windows_machine/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="MAC addressUsing MAC address to identify a computer isn’t reliable. Because each computer can easily have multiple MAC address from multiple network adapters(Ethernet, Wi-Fi, Bluetooth, even virtual n">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-29T14:57:31.704Z">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/16/windows/uniquely_identify_a_windows_machine/" title="Way to uniquely identify a windows machine" itemprop="url">Way to uniquely identify a windows machine</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-15T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MAC-address"><span class="toc-number">1.</span> <span class="toc-text">MAC address</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wmic-csproduct-get-UUID"><span class="toc-number">2.</span> <span class="toc-text">wmic csproduct get UUID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Product-ID"><span class="toc-number">3.</span> <span class="toc-text">Windows Product ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hard-Drive%E2%80%99s-serial-number"><span class="toc-number">4.</span> <span class="toc-text">Hard Drive’s serial number</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#System-Identity-UniqueID"><span class="toc-number">5.</span> <span class="toc-text">System.Identity.UniqueID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPUID"><span class="toc-number">6.</span> <span class="toc-text">CPUID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HKEY-LOCAL-MACHINE-SOFTWARE-Microsoft-Cryptography-MachineGuid%E2%80%9D"><span class="toc-number">7.</span> <span class="toc-text">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">8.</span> <span class="toc-text">Reference</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="MAC-address"><a href="#MAC-address" class="headerlink" title="MAC address"></a>MAC address</h2><p>Using MAC address to identify a computer isn’t reliable. Because each computer can easily have multiple MAC address from multiple network adapters(Ethernet, Wi-Fi, Bluetooth, even virtual network adapters).</p>
+<h2 id="wmic-csproduct-get-UUID"><a href="#wmic-csproduct-get-UUID" class="headerlink" title="wmic csproduct get UUID"></a>wmic csproduct get UUID</h2><p>That UUID is the best way to ID a machine, it exists in Windows, Mac and many other platforms. It is 32 characters in length, a universally unique identifier. You can run the above wmic command to get it.</p>
+<p>But wait, that’s not always the case. Some of the motherboard vendors might not include this UUID in their motherboard, which is quite common on those non-OEM machines. In that case, when you use wmic trying to retrieve it you will get all FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF as the ID back.</p>
+<h2 id="Windows-Product-ID"><a href="#Windows-Product-ID" class="headerlink" title="Windows Product ID"></a>Windows Product ID</h2><p>Activation of Windows may change the value.</p>
+<h2 id="Hard-Drive’s-serial-number"><a href="#Hard-Drive’s-serial-number" class="headerlink" title="Hard Drive’s serial number"></a>Hard Drive’s serial number</h2><p>Using the SN of the HD volume actually works, though when testing it on various systems, I’ve sometimes needed more privileges, so I stopped pursuing that path. It fails when running from (Linux) Live-OS.</p>
+<h2 id="System-Identity-UniqueID"><a href="#System-Identity-UniqueID" class="headerlink" title="System.Identity.UniqueID"></a>System.Identity.UniqueID</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/properties/props-system-identity-uniqueid">System.Identity.UniqueID</a></p>
+<p>not much infomations.</p>
+<h2 id="CPUID"><a href="#CPUID" class="headerlink" title="CPUID"></a>CPUID</h2><p>CPUID isn’t unique. At least, not since last ~10 years. Intel deactivated that feature long ago. Usually some zero-ed string is returned, when someone tries to read the specific variable.</p>
+<h2 id="HKEY-LOCAL-MACHINE-SOFTWARE-Microsoft-Cryptography-MachineGuid”"><a href="#HKEY-LOCAL-MACHINE-SOFTWARE-Microsoft-Cryptography-MachineGuid”" class="headerlink" title="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid”"></a>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid”</h2><p>MachineGuid is unique unless Windows is restored from a backup or clone.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.nextofwindows.com/the-best-way-to-uniquely-identify-a-windows-machine">The Best Way To Uniquely Identify A Windows Machine</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/denisbrodbeck/machineid/issues/2">Error while getting machine id in Windows 10 #2</a></li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/09/17/math/matrix/" title="Matrix">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Matrix</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/09/15/unicode/soft_hyphen/"  title="Soft Hyphen">
+ <strong>下一篇：</strong><br/> 
+ <span>Soft Hyphen
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MAC-address"><span class="toc-number">1.</span> <span class="toc-text">MAC address</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wmic-csproduct-get-UUID"><span class="toc-number">2.</span> <span class="toc-text">wmic csproduct get UUID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Product-ID"><span class="toc-number">3.</span> <span class="toc-text">Windows Product ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hard-Drive%E2%80%99s-serial-number"><span class="toc-number">4.</span> <span class="toc-text">Hard Drive’s serial number</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#System-Identity-UniqueID"><span class="toc-number">5.</span> <span class="toc-text">System.Identity.UniqueID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPUID"><span class="toc-number">6.</span> <span class="toc-text">CPUID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HKEY-LOCAL-MACHINE-SOFTWARE-Microsoft-Cryptography-MachineGuid%E2%80%9D"><span class="toc-number">7.</span> <span class="toc-text">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\MachineGuid”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">8.</span> <span class="toc-text">Reference</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

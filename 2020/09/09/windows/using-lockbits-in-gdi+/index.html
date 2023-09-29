@@ -1,0 +1,437 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Using LockBits in GDI+ | 业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="Understanding how to use LockBits is essential for creating high performance GDI+ applications. Usually, GDI+ is thought of as a low performance graphics API. While arguments can be made for this, if">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using LockBits in GDI+">
+<meta property="og:url" content="https://luo1945049855.github.io/2020/09/09/windows/using-lockbits-in-gdi+/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="Understanding how to use LockBits is essential for creating high performance GDI+ applications. Usually, GDI+ is thought of as a low performance graphics API. While arguments can be made for this, if">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luo1945049855.github.io/images/LockBits.jpg?raw=true%22LockBits%22">
+<meta property="article:published_time" content="2020-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-29T14:57:31.705Z">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luo1945049855.github.io/images/LockBits.jpg?raw=true%22LockBits%22">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/windows/using-lockbits-in-gdi+/" title="Using LockBits in GDI+" itemprop="url">Using LockBits in GDI+</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Calling-LockBits"><span class="toc-number">1.</span> <span class="toc-text">Calling LockBits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-format-of-the-pixel-data"><span class="toc-number">2.</span> <span class="toc-text">The format of the pixel data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unlocking-the-bits"><span class="toc-number">3.</span> <span class="toc-text">Unlocking the bits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+		
+		</div>
+		
+		<p>Understanding how to use LockBits is essential for creating high performance GDI+ applications. Usually, GDI+ is thought of as a low performance graphics API. While arguments can be made for this, if you use GDI+ properly, you can achieve great performance.</p>
+<p>The easiest way to access pixel data is to use GetPixel and SetPixel member functions of the Bitmap class. Unfortunately, using these functions has a great amount of overhead. When working with large images, doing any type of processing with GetPixel and SetPixel is simply too slow and not acceptable for modern applications. LockBits is specifically used to make the data in a bitmap directly available to you, the programmer. The workflow is very simple:</p>
+<ol>
+<li>Use LockBits to obtain a raw array of data</li>
+<li>Perform image processing using the standard array of data</li>
+<li>Use UnlockBits to commit the new data back into the bitmap</li>
+</ol>
+<h2 id="Calling-LockBits"><a href="#Calling-LockBits" class="headerlink" title="Calling LockBits"></a>Calling LockBits</h2><p>When calling LockBits, you can specify a specific rectangular portion of the bitmap you want to manipulate, the read/write mode, the pixel format you would like the data to be in.</p>
+<p>// We must use LockBits to get the raw data. GetPixel and SetPixel are simply too slow</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BitmapData bitmapData;</span><br><span class="line">pBitmap-&gt;LockBits(</span><br><span class="line">    &amp;Rect(<span class="number">0</span>,<span class="number">0</span>,pBitmap-&gt;GetWidth(), pBitmap-&gt;GetHeight()), </span><br><span class="line">    ImageLockModeWrite,</span><br><span class="line">    PixelFormat32bppARGB, &amp;bitmapData);</span><br></pre></td></tr></table></figure>
+
+<h2 id="The-format-of-the-pixel-data"><a href="#The-format-of-the-pixel-data" class="headerlink" title="The format of the pixel data"></a>The format of the pixel data</h2><p>It is important for you to realize how the data is formatted. The data is located in the Scan0 member variable in the BitmapData class. This is a standard, one dimensional array which stores information for a 2D image. Therefore, that 2D information is packed into a 1D array. In order to gain access to a specific pixel, you will need to know the X and Y coordinate, along with the Stride.</p>
+<p><img src="/images/LockBits.jpg?raw=true%22LockBits%22" alt="LockBits"></p>
+<p>As you can see in the image above, not all data elements are used. Furthermore, the Scan0 array is of the type void. Before accessing data, it is a good idea to keep another pointer around with the same element size as that in the format you picked when calling the LockBits function. For example, in the code above, a 32 bits per pixel format was selected. Therefore, it would be a good idea to create a pointer of the type int, which is 32 bits for most compilers.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> *pRawBitmapOrig = (<span class="keyword">unsigned</span> <span class="keyword">int</span>*)bitmapData.Scan0;   <span class="comment">// for easy access and indexing</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> curColor = pRawBitmapCopy[curY * bitmapData.Stride / <span class="number">4</span> + curX];</span><br><span class="line"><span class="keyword">int</span> b = curColor &amp; <span class="number">0xff</span>;</span><br><span class="line"><span class="keyword">int</span> g = (curColor &amp; <span class="number">0xff00</span>) &gt;&gt; <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> r = (curColor &amp; <span class="number">0xff0000</span>) &gt;&gt; <span class="number">16</span>;</span><br><span class="line"><span class="keyword">int</span> a = (curColor &amp; <span class="number">0xff000000</span>) &gt;&gt; <span class="number">24</span>;</span><br></pre></td></tr></table></figure>
+
+<p>As you can see in the above code, casting the Scan0 array to another pointer with 32 bits per data element makes accessing the pixel data very straightforward.</p>
+<h2 id="Unlocking-the-bits"><a href="#Unlocking-the-bits" class="headerlink" title="Unlocking the bits"></a>Unlocking the bits</h2><p>As soon as you’re finished manipulating the image data, you’ll want to call UnlockBits. This function essentially commits the data in the Scan0 array back into the bitmap, and also does memory management if any memory had to be allocated in the first place with LockBits.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pBitmap-&gt;UnlockBits(&amp;bitmapData);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Using LockBits and Unlock bits can make simple functions such as image convolution perform 20 times as fast when compared to using GetPixel and SetPixel. Just remember that if you’re editing even a moderately small number of pixels, it might be a good idea to take route described in this tutorial instead of having to make thousands or even millions of functions calls.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="http://supercomputingblog.com/graphics/using-lockbits-in-gdi/">Using LockBits in GDI+</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/09/09/windows/memory_type/" title="Memory Type">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Memory Type</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/09/09/windows/wtl-thunk/"  title="WTL Thunk">
+ <strong>下一篇：</strong><br/> 
+ <span>WTL Thunk
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Calling-LockBits"><span class="toc-number">1.</span> <span class="toc-text">Calling LockBits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-format-of-the-pixel-data"><span class="toc-number">2.</span> <span class="toc-text">The format of the pixel data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unlocking-the-bits"><span class="toc-number">3.</span> <span class="toc-text">Unlocking the bits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

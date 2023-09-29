@@ -1,0 +1,434 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CPP-C | 业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="cpp to c关键代码123456789101112131415161718192021222324252627282930313233343536template&lt;class ClassName, class BaseName, class StructName&gt;class CefCppToC : public CefBase &amp;#123;public:  static Struc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPP-C">
+<meta property="og:url" content="https://luo1945049855.github.io/2020/09/09/cef/cef_cpptoc_ctocpp/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="cpp to c关键代码123456789101112131415161718192021222324252627282930313233343536template&lt;class ClassName, class BaseName, class StructName&gt;class CefCppToC : public CefBase &amp;#123;public:  static Struc">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-29T14:57:31.678Z">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/cef/cef_cpptoc_ctocpp/" title="CPP-C" itemprop="url">CPP-C</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cpp-to-c%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">cpp to c关键代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">模板实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">关键点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c-to-cpp%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">c to cpp关键代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9-1"><span class="toc-number">2.1.</span> <span class="toc-text">关键点</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="cpp-to-c关键代码"><a href="#cpp-to-c关键代码" class="headerlink" title="cpp to c关键代码"></a>cpp to c关键代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>, <span class="title">class</span> <span class="title">BaseName</span>, <span class="title">class</span> <span class="title">StructName</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">CefCppToC</span> :</span> <span class="keyword">public</span> CefBase &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> StructName* <span class="title">Wrap</span><span class="params">(CefRefPtr&lt;BaseName&gt; c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!c.get())</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    ClassName* wrapper = <span class="keyword">new</span> ClassName();</span><br><span class="line">    wrapper-&gt;wrapper_struct_.object_ = c.get();</span><br><span class="line">    wrapper-&gt;AddRef();</span><br><span class="line">    <span class="keyword">return</span> wrapper-&gt;GetStruct();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">  CefCppToC() &#123;</span><br><span class="line">    wrapper_struct_.type_ = kWrapperType;</span><br><span class="line">    wrapper_struct_.wrapper_ = <span class="keyword">this</span>;</span><br><span class="line">    <span class="built_in">memset</span>(GetStruct(), <span class="number">0</span>, <span class="keyword">sizeof</span>(StructName));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">cef_base_t</span>* base = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">cef_base_t</span>*&gt;(GetStruct());</span><br><span class="line">    base-&gt;size = <span class="keyword">sizeof</span>(StructName);</span><br><span class="line">    base-&gt;add_ref = struct_add_ref;</span><br><span class="line">    base-&gt;release = struct_release;</span><br><span class="line">    base-&gt;has_one_ref = struct_has_one_ref;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NDEBUG</span></span><br><span class="line">    base::AtomicRefCountInc(&amp;DebugObjCt);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">  &#125;</span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">WrapperStruct</span> &#123;</span></span><br><span class="line">    CefWrapperType type_;</span><br><span class="line">    BaseName* object_;</span><br><span class="line">    CefCppToC&lt;ClassName, BaseName, StructName&gt;* wrapper_;</span><br><span class="line">    StructName struct_;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模板实例化"><a href="#模板实例化" class="headerlink" title="模板实例化"></a>模板实例化</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CefAppCppToC</span></span></span><br><span class="line"><span class="class">    :</span> <span class="keyword">public</span> CefCppToC &lt;CefAppCppToC, CefApp, <span class="keyword">cef_app_t</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">CefAppCppToC::CefAppCppToC() &#123;</span><br><span class="line">  GetStruct()-&gt;on_before_command_line_processing =</span><br><span class="line">      app_on_before_command_line_processing;</span><br><span class="line">  GetStruct()-&gt;on_register_custom_schemes = app_on_register_custom_schemes;</span><br><span class="line">  GetStruct()-&gt;get_resource_bundle_handler = app_get_resource_bundle_handler;</span><br><span class="line">  GetStruct()-&gt;get_browser_process_handler = app_get_browser_process_handler;</span><br><span class="line">  GetStruct()-&gt;get_render_process_handler = app_get_render_process_handler;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ul>
+<li>模板参数分别为：派生类，基类，C结构体。</li>
+<li>CefCppToC中存在C结构体WrapperStruct对象。</li>
+<li>WrapperStruct中BaseName* object_保存cpp对象指针。</li>
+<li>WrapperStruct中StructName struct_保存c对象。</li>
+<li>CefCppToC::AddRef调用object_::AddRef。</li>
+<li>CefCppToC构造函数初始化C结构体cef_base_t成员，派生类初始化派生结构体中函数指针（如：CefAppCppToC初始化cef_app_t中函数指针)。</li>
+</ul>
+<h2 id="c-to-cpp关键代码"><a href="#c-to-cpp关键代码" class="headerlink" title="c to cpp关键代码"></a>c to cpp关键代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>, <span class="title">class</span> <span class="title">BaseName</span>, <span class="title">class</span> <span class="title">StructName</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">CefRefPtr</span>&lt;BaseName&gt;</span></span><br><span class="line"><span class="class">    <span class="title">CefCToCpp</span> &lt;ClassName, BaseName, StructName&gt; :</span>:Wrap(StructName* s) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!s)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">  WrapperStruct* wrapperStruct = <span class="keyword">new</span> WrapperStruct;</span><br><span class="line">  wrapperStruct-&gt;type_ = kWrapperType;</span><br><span class="line">  wrapperStruct-&gt;struct_ = s;</span><br><span class="line">  <span class="function">CefRefPtr&lt;BaseName&gt; <span class="title">wrapperPtr</span><span class="params">(&amp;wrapperStruct-&gt;wrapper_)</span></span>;</span><br><span class="line">  wrapperStruct-&gt;wrapper_.UnderlyingRelease();</span><br><span class="line">  <span class="keyword">return</span> wrapperPtr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>, <span class="title">class</span> <span class="title">BaseName</span>, <span class="title">class</span> <span class="title">StructName</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">CefCToCpp</span>&lt;ClassName,BaseName,StructName&gt;:</span>:WrapperStruct &#123;</span><br><span class="line">  CefWrapperType type_;</span><br><span class="line">  StructName* struct_;</span><br><span class="line">  ClassName wrapper_;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">StructName* <span class="title">GetStruct</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">WrapperStruct* wrapperStruct = GetWrapperStruct(<span class="keyword">this</span>);</span><br><span class="line">DCHECK_EQ(kWrapperType, wrapperStruct-&gt;type_);</span><br><span class="line"><span class="keyword">return</span> wrapperStruct-&gt;struct_;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>, <span class="title">class</span> <span class="title">BaseName</span>, <span class="title">class</span> <span class="title">StructName</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">typename</span> <span class="title">CefCToCpp</span>&lt;ClassName, BaseName, StructName&gt;:</span>:WrapperStruct*</span><br><span class="line">    CefCToCpp&lt;ClassName, BaseName, StructName&gt;::GetWrapperStruct(</span><br><span class="line">        <span class="keyword">const</span> BaseName* obj) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">reinterpret_cast</span>&lt;WrapperStruct*&gt;(</span><br><span class="line">      <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">char</span>*&gt;(<span class="keyword">const_cast</span>&lt;BaseName*&gt;(obj)) -</span><br><span class="line">      (<span class="keyword">sizeof</span>(WrapperStruct) - <span class="keyword">sizeof</span>(ClassName)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键点-1"><a href="#关键点-1" class="headerlink" title="关键点"></a>关键点</h3><ul>
+<li>模板参数与CppToC类似。</li>
+<li>CefCToCpp::WrapperStruct中StructName* struct_保存c结构体地址。</li>
+<li>CefCToCpp::WrapperStruct中wrapper保存cpp对象。</li>
+<li>CefCToCpp::<strong>GetWrapperStruct</strong>为<strong>桥梁</strong>函数，起到关键作用。该函数首先根据数据成员和结构体的内存偏移得到CefCToCpp::WrapperStruct，从而得到c结构体指针struct_。</li>
+<li>cef_base_t * struct内部函数使用类似上述的技术，先得到CefCppToC::WrapperStruct，从而得到原cpp对象object_。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CEF/">CEF</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/09/15/unicode/soft_hyphen/" title="Soft Hyphen">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Soft Hyphen</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/09/09/network/proxy_types/"  title="Proxy Types">
+ <strong>下一篇：</strong><br/> 
+ <span>Proxy Types
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cpp-to-c%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">cpp to c关键代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">模板实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">关键点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c-to-cpp%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">c to cpp关键代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9-1"><span class="toc-number">2.1.</span> <span class="toc-text">关键点</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

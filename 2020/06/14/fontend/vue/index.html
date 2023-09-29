@@ -1,0 +1,555 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Vue | 业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="TemplateClass Bindings123456789101112131415&lt;div id&#x3D;&quot;inlineClassBind&quot; v-bind:class&#x3D;&quot;&amp;#123; active: isActive &amp;#125;&quot;&gt;Class Bind&lt;&#x2F;div&gt;&lt;script&gt;    var active &#x3D; new Vu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue">
+<meta property="og:url" content="https://luo1945049855.github.io/2020/06/14/fontend/vue/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="TemplateClass Bindings123456789101112131415&lt;div id&#x3D;&quot;inlineClassBind&quot; v-bind:class&#x3D;&quot;&amp;#123; active: isActive &amp;#125;&quot;&gt;Class Bind&lt;&#x2F;div&gt;&lt;script&gt;    var active &#x3D; new Vu">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-29T14:57:31.692Z">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/06/14/fontend/vue/" title="Vue" itemprop="url">Vue</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-06-13T16:00:00.000Z" itemprop="datePublished"> Published 2020-06-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Template"><span class="toc-number">1.</span> <span class="toc-text">Template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class-Bindings"><span class="toc-number">2.</span> <span class="toc-text">Class Bindings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Style-Bindings"><span class="toc-number">3.</span> <span class="toc-text">Style Bindings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-Rendering"><span class="toc-number">4.</span> <span class="toc-text">Conditional Rendering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if"><span class="toc-number">4.1.</span> <span class="toc-text">v-if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-on-lt-template-gt"><span class="toc-number">4.2.</span> <span class="toc-text">v-if on &lt;template&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-v-else-if-v-else"><span class="toc-number">4.3.</span> <span class="toc-text">v-if&#x2F;v-else-if&#x2F;v-else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#controlling-reusable-elements-with-key"><span class="toc-number">4.4.</span> <span class="toc-text">controlling reusable elements with key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-VS-v-show"><span class="toc-number">4.5.</span> <span class="toc-text">v-if VS v-show</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-with-v-for"><span class="toc-number">4.6.</span> <span class="toc-text">v-if with v-for</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Event-Handling"><span class="toc-number">5.</span> <span class="toc-text">Event Handling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Listening-To-Events"><span class="toc-number">5.1.</span> <span class="toc-text">Listening To Events</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-Event-Handlers"><span class="toc-number">5.2.</span> <span class="toc-text">Method Event Handlers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Event-Modifier"><span class="toc-number">5.3.</span> <span class="toc-text">Event Modifier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Key-Modifiers"><span class="toc-number">5.4.</span> <span class="toc-text">Key Modifiers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#System-Modifier-Keys"><span class="toc-number">5.5.</span> <span class="toc-text">System Modifier Keys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exact-Modifier"><span class="toc-number">5.6.</span> <span class="toc-text">.exact Modifier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mouse-Button-Modifier"><span class="toc-number">5.7.</span> <span class="toc-text">Mouse Button Modifier</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Form-Input-Binding"><span class="toc-number">6.</span> <span class="toc-text">Form Input Binding</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Binded-Properties-and-Events"><span class="toc-number">6.1.</span> <span class="toc-text">Binded Properties and Events</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Text"><span class="toc-number">6.2.</span> <span class="toc-text">Text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multiline-Text"><span class="toc-number">6.3.</span> <span class="toc-text">Multiline Text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Checkbox"><span class="toc-number">6.4.</span> <span class="toc-text">Checkbox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radio"><span class="toc-number">6.5.</span> <span class="toc-text">Radio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Select"><span class="toc-number">6.6.</span> <span class="toc-text">Select</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modifiers"><span class="toc-number">6.7.</span> <span class="toc-text">Modifiers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-Rendering"><span class="toc-number">7.</span> <span class="toc-text">List Rendering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Array-Change-Detection"><span class="toc-number">7.1.</span> <span class="toc-text">Array Change Detection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Replacing-an-Array"><span class="toc-number">7.2.</span> <span class="toc-text">Replacing an Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Caveats"><span class="toc-number">7.3.</span> <span class="toc-text">Caveats</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Display-Filtered-Sorted-Results"><span class="toc-number">7.4.</span> <span class="toc-text">Display Filtered&#x2F;Sorted Results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-with-a-Range"><span class="toc-number">7.5.</span> <span class="toc-text">v-for with a Range</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-on-a-lt-template-gt"><span class="toc-number">7.6.</span> <span class="toc-text">v-for on a &lt;template&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-and-v-if"><span class="toc-number">7.7.</span> <span class="toc-text">v-for and v-if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-with-a-Component"><span class="toc-number">7.8.</span> <span class="toc-text">v-for with a Component</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h2><h2 id="Class-Bindings"><a href="#Class-Bindings" class="headerlink" title="Class Bindings"></a>Class Bindings</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div id=<span class="string">&quot;inlineClassBind&quot;</span> v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;&#123; active: isActive &#125;&quot;</span>&gt;Class Bind&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> active = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">&quot;#inlineClassBind&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            isActive: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">It will render:</span><br><span class="line"></span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;active&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;static&quot;</span></span><br><span class="line">  v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;&#123; active:isActive, &#x27;text-danger&#x27;: hasError &#125;&quot;</span></span><br><span class="line">&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line">    isActive: <span class="literal">true</span>,</span><br><span class="line">    hasError: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">It will render:</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;static active&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line">    isActive: <span class="literal">true</span>,</span><br><span class="line">    hasError: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line">It will render:</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;static active text-danger&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Style-Bindings"><a href="#Style-Bindings" class="headerlink" title="Style Bindings"></a>Style Bindings</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;style-binding&quot;</span> v-bind:style=<span class="string">&quot;&#123; color: activeColor, fontSize: fontSize + &#x27;px&#x27; &#125;&quot;</span>&gt;style bindings&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> titleStyleBinding = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">&quot;#title-style-binding&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            activeColor: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">            fontSize: <span class="number">30</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--object syntax--&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;style-binding-object&quot;</span> v-bind:style=<span class="string">&quot;styleObject&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> styleBindingObject = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">&quot;#style-binding-object&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            styleObject: &#123;</span><br><span class="line">                color: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">                fontSize: <span class="string">&#x27;13px&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*&lt;!--multiple values--&gt;*/</span></span><br><span class="line">&lt;div v-bind:style=<span class="string">&quot;&#123; display: [&#x27;-webkit-box&#x27;, &#x27;-ms-flexbox&#x27;, &#x27;flex&#x27;]&#125;&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*&lt;!--array syntax--&gt;*/</span></span><br><span class="line">&lt;div v-bind:style=<span class="string">&quot;[baseStyles, overridingStyles]&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Conditional-Rendering"><a href="#Conditional-Rendering" class="headerlink" title="Conditional Rendering"></a>Conditional Rendering</h2><h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 v-<span class="keyword">if</span>=<span class="string">&quot;awesome&quot;</span>&gt;Vue is awesome!&lt;/h1&gt;</span><br><span class="line">&lt;h1 v-<span class="keyword">else</span>&gt;Oh no it<span class="string">&#x27;s not!&lt;/h1&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="v-if-on-lt-template-gt"><a href="#v-if-on-lt-template-gt" class="headerlink" title="v-if on &lt;template&gt;"></a>v-if on <code>&lt;template&gt;</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">&quot;ok&quot;</span>&gt;</span><br><span class="line">    &lt;h1&gt;Title&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;Paragraph <span class="number">1</span>&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Paragraph <span class="number">2</span>&lt;/p&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-if-v-else-if-v-else"><a href="#v-if-v-else-if-v-else" class="headerlink" title="v-if/v-else-if/v-else"></a>v-if/v-else-if/v-else</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-<span class="keyword">if</span>=<span class="string">&quot;type === A&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;div v-<span class="keyword">else</span>-<span class="keyword">if</span>=<span class="string">&quot;type === B&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;div v-<span class="keyword">else</span>=<span class="string">&quot;type === C&quot;</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="controlling-reusable-elements-with-key"><a href="#controlling-reusable-elements-with-key" class="headerlink" title="controlling reusable elements with key"></a>controlling reusable elements with key</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">&quot;loginType === &#x27;username&#x27;&quot;</span>&gt;</span><br><span class="line">    &lt;lable&gt;Username&lt;/label&gt;</span><br><span class="line">    &lt;input placeholder=<span class="string">&quot;Enter your username&quot;</span>&gt;&lt;/input&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">    &lt;label&gt;Email&lt;/label&gt;</span><br><span class="line">    &lt;intput placeholder=<span class="string">&quot;Enter your email address&quot;</span>&gt;&lt;/input&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--<span class="keyword">in</span> <span class="built_in">this</span> condition placeholder is reused.--&gt;</span><br><span class="line">&lt;!--These two elements are completely separate when two unique <span class="string">`key`</span> are assigned.--&gt;</span><br><span class="line"></span><br><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">&quot;loginType === &#x27;username&#x27;&quot;</span>&gt;</span><br><span class="line">  &lt;label&gt;Username&lt;/label&gt;</span><br><span class="line">  &lt;input placeholder=<span class="string">&quot;Enter your username&quot;</span> key=<span class="string">&quot;username-input&quot;</span>&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">  &lt;label&gt;Email&lt;/label&gt;</span><br><span class="line">  &lt;input placeholder=<span class="string">&quot;Enter your email address&quot;</span> key=<span class="string">&quot;email-input&quot;</span>&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-if-VS-v-show"><a href="#v-if-VS-v-show" class="headerlink" title="v-if VS v-show"></a>v-if VS v-show</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 v-show=<span class="string">&quot;ok&quot;</span>&gt;Hello!&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The difference is that an element with <code>v-show</code> will always be rendered and remain in the DOM; <code>v-show only</code> toggles the <code>display</code> CSS property of the element.</p>
+<h3 id="v-if-with-v-for"><a href="#v-if-with-v-for" class="headerlink" title="v-if with v-for"></a>v-if with v-for</h3><p>using <code>v-if</code> and <code>v-for</code> together is not recommended.</p>
+<h2 id="Event-Handling"><a href="#Event-Handling" class="headerlink" title="Event Handling"></a>Event Handling</h2><h3 id="Listening-To-Events"><a href="#Listening-To-Events" class="headerlink" title="Listening To Events"></a>Listening To Events</h3><p><code>v-on</code> listen to DOM events.</p>
+<h3 id="Method-Event-Handlers"><a href="#Method-Event-Handlers" class="headerlink" title="Method Event Handlers"></a>Method Event Handlers</h3><h3 id="Event-Modifier"><a href="#Event-Modifier" class="headerlink" title="Event Modifier"></a>Event Modifier</h3><ul>
+<li>.stop</li>
+<li>.prevent</li>
+</ul>
+<!-- use capture mode when adding the event listener -->
+<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+
+<ul>
+<li>.capture</li>
+</ul>
+<!-- only trigger handler if event.target is the element itself -->
+<!-- i.e. not from a child element -->
+
+<ul>
+<li>.self</li>
+</ul>
+<!-- the click event will be triggered at most once -->
+
+<ul>
+<li>.once</li>
+</ul>
+<!-- the scroll event's default behavior (scrolling) will happen -->
+<!-- immediately, instead of waiting for `onScroll` to complete  -->
+<!-- in case it contains `event.preventDefault()`                -->
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-on:scroll.passive=<span class="string">&quot;onScroll&quot;</span>&gt;...&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>.passive</li>
+</ul>
+<p><code>Order matters</code> when using modifiers because the relevant code is generated in the same order.<br>Therefore using <code>v-on:click.prevent.self</code> will prevent <code>all clicks</code><br>while <code>v-on:click.self.prevent</code> will only prevent clicks <code>on the element itself</code>.</p>
+<h3 id="Key-Modifiers"><a href="#Key-Modifiers" class="headerlink" title="Key Modifiers"></a>Key Modifiers</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- only call <span class="string">`vm.submit()`</span> when the <span class="string">`key`</span> is <span class="string">`Enter`</span> --&gt;</span><br><span class="line">&lt;input v-on:keyup.enter=<span class="string">&quot;submit&quot;</span>&gt;&lt;/input&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="System-Modifier-Keys"><a href="#System-Modifier-Keys" class="headerlink" title="System Modifier Keys"></a>System Modifier Keys</h3><ul>
+<li>.ctrl</li>
+<li>.alt</li>
+<li>.shift</li>
+<li>.meta <!--Windows key/Command key--></li>
+</ul>
+<p>for example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--alt+c--&gt;</span><br><span class="line">&lt;intput @keyup.alt<span class="number">.67</span>=<span class="string">&quot;clear&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--Ctrl + Click--&gt;</span><br><span class="line">&lt;div @click.ctrl=<span class="string">&quot;doSomething&quot;</span>&gt;Do something&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="exact-Modifier"><a href="#exact-Modifier" class="headerlink" title=".exact Modifier"></a>.exact Modifier</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click.ctrl=<span class="string">&quot;onClick&quot;</span>&gt;A&lt;/button&gt;</span><br><span class="line">&lt;!--<span class="built_in">this</span> will fire even <span class="keyword">if</span> alt or shift is also pressed.--&gt;</span><br><span class="line">&lt;!--<span class="built_in">this</span> will only fire when Ctrl and no other keys are pressed.--&gt;</span><br><span class="line">&lt;button @click.ctrl.exact=<span class="string">&quot;onCtrlClick&quot;</span>&gt;B&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mouse-Button-Modifier"><a href="#Mouse-Button-Modifier" class="headerlink" title="Mouse Button Modifier"></a>Mouse Button Modifier</h3><ul>
+<li>.left</li>
+<li>.right</li>
+<li>.middle</li>
+</ul>
+<h2 id="Form-Input-Binding"><a href="#Form-Input-Binding" class="headerlink" title="Form Input Binding"></a>Form Input Binding</h2><p><code>v-model</code> can create two-way bindings on <code>form input</code>, <code>text area</code>, <code>select elements</code>.</p>
+<p><code>v-model</code> will ignore the initial <code>value</code>, <code>checked</code> or <code>selected</code> attributes found on any form elements.<br>You should declare the initial value on the JavaScript side, inside the <code>data</code> option of your component.</p>
+<h3 id="Binded-Properties-and-Events"><a href="#Binded-Properties-and-Events" class="headerlink" title="Binded Properties and Events"></a>Binded <code>Properties</code> and <code>Events</code></h3><p><code>v-model</code> internally uses different properties and emits different events for different input elements.</p>
+<ul>
+<li><code>text</code> and <code>textarea</code> elements use <code>value</code> property and <code>input</code> event.</li>
+<li><code>checkbox</code> and <code>radiobuttons</code> use <code>checked</code> property and <code>change</code> event.</li>
+<li><code>select fields</code> use <code>value</code> as a prop and <code>change</code> as an event.</li>
+</ul>
+<h3 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h3><h3 id="Multiline-Text"><a href="#Multiline-Text" class="headerlink" title="Multiline Text"></a>Multiline Text</h3><h3 id="Checkbox"><a href="#Checkbox" class="headerlink" title="Checkbox"></a>Checkbox</h3><h3 id="Radio"><a href="#Radio" class="headerlink" title="Radio"></a>Radio</h3><h3 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h3><h3 id="Modifiers"><a href="#Modifiers" class="headerlink" title="Modifiers"></a>Modifiers</h3><ul>
+<li>.lazy</li>
+</ul>
+<p><code>v-model</code> syncs the input with the data after each <code>input</code> event(with the exception of IME composition).<br>You can add the <code>lazy</code> modifiers to instead sync after <code>change</code> events.</p>
+<ul>
+<li>.number</li>
+<li>.trim</li>
+</ul>
+<h2 id="List-Rendering"><a href="#List-Rendering" class="headerlink" title="List Rendering"></a>List Rendering</h2><!--item in/of items-->
+<!--(item, index) in/of items-->
+<!--value in object-->
+<!--: -->
+<!--. :  -->
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=<span class="string">&quot;example&quot;</span>&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">&quot;item in items&quot;</span>&gt;</span><br><span class="line">        &#123;&#123; item.message &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul id=<span class="string">&quot;example-1&quot;</span>&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">&quot;(item, index) in items&quot;</span>&gt;</span><br><span class="line">        &#123;&#123; parentMessage &#125;&#125; - &#123;&#123; index &#125;&#125; - &#123;&#123; item.message &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;ul id=<span class="string">&quot;v-for-object&quot;</span>&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">&quot;value in object&quot;</span>&gt;</span><br><span class="line">        &#123;&#123; value &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--value, name--&gt;</span><br><span class="line">&lt;ul id=<span class="string">&quot;v-for-object-name-value&quot;</span>&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">&quot;(value, name) in object&quot;</span>&gt;</span><br><span class="line">        &#123;&#123; name &#125;&#125;: &#123;&#123; value &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--value, name, index--&gt;</span><br><span class="line">&lt;div v-<span class="keyword">for</span>=<span class="string">&quot;(value, name, index) in object&quot;</span>&gt;</span><br><span class="line">  &#123;&#123; index &#125;&#125;. &#123;&#123; name &#125;&#125;: &#123;&#123; value &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> example = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el:<span class="string">&quot;#example&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            items: [</span><br><span class="line">                &#123; <span class="attr">message</span>: <span class="string">&#x27;Foo&#x27;</span> &#125;,</span><br><span class="line">                &#123; <span class="attr">message</span>: <span class="string">&#x27;Bar&#x27;</span> &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el:<span class="string">&#x27;#example-1&#x27;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            parentMessage: <span class="string">&#x27;Parent&#x27;</span>,</span><br><span class="line">            items: [</span><br><span class="line">                &#123; <span class="attr">message</span>: <span class="string">&#x27;Foo&#x27;</span> &#125;,</span><br><span class="line">                &#123; <span class="attr">message</span>: <span class="string">&#x27;Bar&#x27;</span> &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">var</span> exampleVForObject = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">&quot;#v-for-object&quot;</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            title: <span class="string">&#x27;How to do lists in Vue&#x27;</span>,</span><br><span class="line">            author: <span class="string">&#x27;Jane Doe&#x27;</span>,</span><br><span class="line">            publishedAt: <span class="string">&#x27;2016-04-10&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Array-Change-Detection"><a href="#Array-Change-Detection" class="headerlink" title="Array Change Detection"></a>Array Change Detection</h3><p>Vue wraps an observed array’s mutation method so they will also trigger view updates, Include:</p>
+<ul>
+<li>push()</li>
+<li>pop()</li>
+<li>shift()       <!--remove first element from array and return that removed element--></li>
+<li>unshift()     <!--add one or more elements to the beginning of an array and return the new lengh of the array--></li>
+<li>splice()      <!--change the contents of an array by removing or replacing existing elements and/or adding new elements--></li>
+<li>sort()</li>
+<li>reverse()</li>
+</ul>
+<h3 id="Replacing-an-Array"><a href="#Replacing-an-Array" class="headerlink" title="Replacing an Array"></a>Replacing an Array</h3><p>example1.items = example1.item.filter(function (item) {<br>    return item.message.match(/Foo/)<br>})</p>
+<h3 id="Caveats"><a href="#Caveats" class="headerlink" title="Caveats"></a>Caveats</h3><p>Vue can’t detect the following changes to an array.</p>
+<ol>
+<li>set and item with the index, e.g. vm.item[indexOfItem] = newValue</li>
+<li>modify the length of the array, e.g. vm.item.length = newLength</li>
+<li>Vue can’t detect property addition or deletion, e.g.</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        a: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.b = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>solutions:</p>
+<ol>
+<li><p>caveat 1<br>Vue.Set(vm.items, indexOfItem, newValue)<br>vm.$set(vm.items, indexOfItem, newValue) <!--alias for Vue.Set--><br>vm.items.splice(indexOfItem, 1, newValue)</p>
+</li>
+<li><p>caveat 2<br>vm.items.splice(newLength)</p>
+</li>
+<li><p>caveat 3</p>
+</li>
+</ol>
+<p>Vue does not allow dynamically adding new <code>root-level</code> reactive properties to an already created instance.<br>However, it’t possible to add reactive properties to a nested object using the <code>Vue.set(object, propertyName, value)</code>. For example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        userProfile: &#123;</span><br><span class="line">            name: <span class="string">&#x27;Anika&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.set(vm.userProfile, <span class="string">&#x27;age&#x27;</span>, <span class="number">27</span>)</span><br><span class="line">vm.$set(vm.userProfile, <span class="string">&#x27;age&#x27;</span>, <span class="number">27</span>)  &lt;!--alias <span class="keyword">for</span> Vue.set--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Sometimes you may want to assign a number of new properties to an existing object, for example using Object.assign() or _.extend().<br>In such cases, you should create a fresh object with properties from both objects. So instead of:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(vm.userProfile, &#123;</span><br><span class="line">    age: <span class="number">27</span>,</span><br><span class="line">    favoriteColor: <span class="string">&#x27;Vue Green&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>you would add new, reactive properties with:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vm.userProfile = <span class="built_in">Object</span>.assign(&#123;&#125;, vm.userProfile, &#123;</span><br><span class="line">    age: <span class="number">27</span>,</span><br><span class="line">    favoriteColor: <span class="string">&#x27;Vue Green&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Display-Filtered-Sorted-Results"><a href="#Display-Filtered-Sorted-Results" class="headerlink" title="Display Filtered/Sorted Results"></a>Display Filtered/Sorted Results</h3><p>solution 1:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-<span class="keyword">for</span>=<span class="string">&quot;n in evenNumbers&quot;</span>&gt;&#123;&#123; n &#125;&#125;&lt;/li&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> evenNumbers = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        numbers: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    computed: &#123;</span><br><span class="line">        evenNumbers: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>solution 2(where computed properties are not feasible):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-<span class="keyword">for</span>=<span class="string">&quot;n in even(numberse&quot;</span>&gt;&#123;&#123; n &#125;&#125;&lt;/li&gt;</span><br><span class="line">methods: &#123;</span><br><span class="line">    even : <span class="function"><span class="keyword">function</span> (<span class="params">numbers</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-for-with-a-Range"><a href="#v-for-with-a-Range" class="headerlink" title="v-for with a Range"></a>v-for with a Range</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span v-<span class="keyword">for</span>=<span class="string">&quot;n in 10&quot;</span>&gt;&#123;&#123; n &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-for-on-a-lt-template-gt"><a href="#v-for-on-a-lt-template-gt" class="headerlink" title="v-for on a &lt;template&gt;"></a>v-for on a <code>&lt;template&gt;</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;template v-<span class="keyword">for</span>=<span class="string">&quot;item in items&quot;</span>&gt;</span><br><span class="line">    &lt;li&gt;&#123;&#123; item.msg &#125;&#125;&lt;/li&gt;</span><br><span class="line">    &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;divider&quot;</span> role=<span class="string">&quot;presentation&quot;</span>&gt;&lt;/li&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-for-and-v-if"><a href="#v-for-and-v-if" class="headerlink" title="v-for and v-if"></a>v-for and v-if</h3><p>It’s not recommended to use v-for and v-if together.<br>When they exist on the same node, v-for has a higher priority than v-if.</p>
+<h3 id="v-for-with-a-Component"><a href="#v-for-with-a-Component" class="headerlink" title="v-for with a Component"></a>v-for with a Component</h3><p>a <code>key</code> is now required.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;my-component v-<span class="keyword">for</span>=<span class="string">&quot;item in items&quot;</span> :key=<span class="string">&quot;item.id&quot;</span></span><br><span class="line">    v-<span class="keyword">for</span>=<span class="string">&quot;(item, index) in items&quot;</span></span><br><span class="line">    v-bind:item=<span class="string">&quot;item&quot;</span></span><br><span class="line">    v-bind:index=<span class="string">&quot;index&quot;</span></span><br><span class="line">    v-bind:key=<span class="string">&quot;item.id&quot;</span></span><br><span class="line">&gt;&lt;/my-component&gt;</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/07/18/life-of-a-pixel/" title="Life of a Pixel">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Life of a Pixel</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/06/13/fontend/es6/"  title="ES6">
+ <strong>下一篇：</strong><br/> 
+ <span>ES6
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Template"><span class="toc-number">1.</span> <span class="toc-text">Template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class-Bindings"><span class="toc-number">2.</span> <span class="toc-text">Class Bindings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Style-Bindings"><span class="toc-number">3.</span> <span class="toc-text">Style Bindings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-Rendering"><span class="toc-number">4.</span> <span class="toc-text">Conditional Rendering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if"><span class="toc-number">4.1.</span> <span class="toc-text">v-if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-on-lt-template-gt"><span class="toc-number">4.2.</span> <span class="toc-text">v-if on &lt;template&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-v-else-if-v-else"><span class="toc-number">4.3.</span> <span class="toc-text">v-if&#x2F;v-else-if&#x2F;v-else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#controlling-reusable-elements-with-key"><span class="toc-number">4.4.</span> <span class="toc-text">controlling reusable elements with key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-VS-v-show"><span class="toc-number">4.5.</span> <span class="toc-text">v-if VS v-show</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-with-v-for"><span class="toc-number">4.6.</span> <span class="toc-text">v-if with v-for</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Event-Handling"><span class="toc-number">5.</span> <span class="toc-text">Event Handling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Listening-To-Events"><span class="toc-number">5.1.</span> <span class="toc-text">Listening To Events</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-Event-Handlers"><span class="toc-number">5.2.</span> <span class="toc-text">Method Event Handlers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Event-Modifier"><span class="toc-number">5.3.</span> <span class="toc-text">Event Modifier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Key-Modifiers"><span class="toc-number">5.4.</span> <span class="toc-text">Key Modifiers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#System-Modifier-Keys"><span class="toc-number">5.5.</span> <span class="toc-text">System Modifier Keys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exact-Modifier"><span class="toc-number">5.6.</span> <span class="toc-text">.exact Modifier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mouse-Button-Modifier"><span class="toc-number">5.7.</span> <span class="toc-text">Mouse Button Modifier</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Form-Input-Binding"><span class="toc-number">6.</span> <span class="toc-text">Form Input Binding</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Binded-Properties-and-Events"><span class="toc-number">6.1.</span> <span class="toc-text">Binded Properties and Events</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Text"><span class="toc-number">6.2.</span> <span class="toc-text">Text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multiline-Text"><span class="toc-number">6.3.</span> <span class="toc-text">Multiline Text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Checkbox"><span class="toc-number">6.4.</span> <span class="toc-text">Checkbox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radio"><span class="toc-number">6.5.</span> <span class="toc-text">Radio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Select"><span class="toc-number">6.6.</span> <span class="toc-text">Select</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modifiers"><span class="toc-number">6.7.</span> <span class="toc-text">Modifiers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-Rendering"><span class="toc-number">7.</span> <span class="toc-text">List Rendering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Array-Change-Detection"><span class="toc-number">7.1.</span> <span class="toc-text">Array Change Detection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Replacing-an-Array"><span class="toc-number">7.2.</span> <span class="toc-text">Replacing an Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Caveats"><span class="toc-number">7.3.</span> <span class="toc-text">Caveats</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Display-Filtered-Sorted-Results"><span class="toc-number">7.4.</span> <span class="toc-text">Display Filtered&#x2F;Sorted Results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-with-a-Range"><span class="toc-number">7.5.</span> <span class="toc-text">v-for with a Range</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-on-a-lt-template-gt"><span class="toc-number">7.6.</span> <span class="toc-text">v-for on a &lt;template&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-and-v-if"><span class="toc-number">7.7.</span> <span class="toc-text">v-for and v-if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for-with-a-Component"><span class="toc-number">7.8.</span> <span class="toc-text">v-for with a Component</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

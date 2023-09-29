@@ -1,0 +1,475 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Batch Script | 业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="echo off command to ensure that the commands are not shown when the code is executed.@echo off makes the command apply to itself as well. Command Line Argumentscommand line arguments can be accessed b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Batch Script">
+<meta property="og:url" content="https://luo1945049855.github.io/2020/09/24/windows/batch/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="echo off command to ensure that the commands are not shown when the code is executed.@echo off makes the command apply to itself as well. Command Line Argumentscommand line arguments can be accessed b">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-29T14:57:31.701Z">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/24/windows/batch/" title="Batch Script" itemprop="url">Batch Script</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-23T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Command-Line-Arguments"><span class="toc-number">1.</span> <span class="toc-text">Command Line Arguments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set-Command"><span class="toc-number">2.</span> <span class="toc-text">Set Command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Environment-Variables"><span class="toc-number">3.</span> <span class="toc-text">Environment Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Comments"><span class="toc-number">4.</span> <span class="toc-text">Comments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-number">5.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">6.</span> <span class="toc-text">Array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#If-else"><span class="toc-number">7.</span> <span class="toc-text">If&#x2F;else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operators"><span class="toc-number">8.</span> <span class="toc-text">Operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DATE-amp-TIME"><span class="toc-number">9.</span> <span class="toc-text">DATE &amp; TIME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-Output"><span class="toc-number">10.</span> <span class="toc-text">Input&#x2F;Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Return-Code"><span class="toc-number">11.</span> <span class="toc-text">Return Code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loops"><span class="toc-number">12.</span> <span class="toc-text">Loops</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions"><span class="toc-number">13.</span> <span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Process"><span class="toc-number">14.</span> <span class="toc-text">Process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Aliases"><span class="toc-number">15.</span> <span class="toc-text">Aliases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Devices"><span class="toc-number">16.</span> <span class="toc-text">Devices</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Registry"><span class="toc-number">17.</span> <span class="toc-text">Registry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network"><span class="toc-number">18.</span> <span class="toc-text">Network</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Printing"><span class="toc-number">19.</span> <span class="toc-text">Printing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debugging"><span class="toc-number">20.</span> <span class="toc-text">Debugging</span></a></li></ol>
+		
+		</div>
+		
+		<p><code>echo off</code> command to ensure that the commands are not shown when the code is executed.<br><code>@echo off</code> makes the command apply to itself as well.</p>
+<h2 id="Command-Line-Arguments"><a href="#Command-Line-Arguments" class="headerlink" title="Command Line Arguments"></a>Command Line Arguments</h2><p>command line arguments can be accessed by <code>%1</code>, <code>%2</code>, <code>%3</code> till <code>%9</code>. But we can use<br><code>SHIFT</code> command to overcome this limitation.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">:Loop</span><br><span class="line">IF &quot;%1%&#x3D;&#x3D;&quot;&quot; GOTO :Continue</span><br><span class="line">    echo %1%</span><br><span class="line">SHIFT</span><br><span class="line">GOTO :Loop</span><br><span class="line">:Continue</span><br></pre></td></tr></table></figure>
+
+<h2 id="Set-Command"><a href="#Set-Command" class="headerlink" title="Set Command"></a>Set Command</h2><p>syntax:</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> /A variable=value</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> message=Hello World</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%message%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> /A a=<span class="number">1</span></span><br><span class="line"><span class="built_in">set</span> /A b=<span class="number">2</span></span><br><span class="line"><span class="built_in">set</span> /A c=<span class="variable">%a%</span>+<span class="variable">%b%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> global=global variable</span><br><span class="line"><span class="built_in">setlocal</span></span><br><span class="line"><span class="built_in">set</span> local=local variable</span><br><span class="line"><span class="built_in">endlocal</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>set</code> command can be used to initialize a variable.</p>
+<p><code>/A</code> is used if the valuee needs to be numeric in nature.</p>
+<p><code>%</code> sign has to be used to reference a variable.</p>
+<p><code>setlocal</code> command to make variables local to the scope of your script.<br>any variable assignments revert upon calling <code>endlocal</code>, <code>exit</code>, or execution<br>reaches the end of file(EOF) in your script.</p>
+<p><code>setlocal</code> command is first used to ensure the command processor takes a backup of all environment variables.<br><code>endlocal</code> is automatically called when the end of the batch file is reached, i.e. by calling GOTO:EOF</p>
+<h2 id="Environment-Variables"><a href="#Environment-Variables" class="headerlink" title="Environment Variables"></a>Environment Variables</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo %OS%</span><br></pre></td></tr></table></figure>
+
+<p><code>%</code> sign has to be used to reference a environment variables.</p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rem this is rem comments.</span><br><span class="line">::  this is :: comments.</span><br></pre></td></tr></table></figure>
+
+<p><code>rem</code> is a command so it will slow down the code.</p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">set message&#x3D;Hello World</span><br><span class="line"></span><br><span class="line">:: empty string.</span><br><span class="line"></span><br><span class="line">set a&#x3D;</span><br><span class="line"></span><br><span class="line">:: check existence of empty string.</span><br><span class="line">:: To Check for existence of an empty string, you need to encompass the variable name in square brackets</span><br><span class="line">:: and also compare it against a value in square brackets as shown in the example.</span><br><span class="line"></span><br><span class="line">if [%a%]&#x3D;&#x3D;[] echo &quot;string a is empty&quot;</span><br><span class="line"></span><br><span class="line">:: interpolation</span><br><span class="line">:: concatenation</span><br><span class="line"></span><br><span class="line">set a&#x3D;hello</span><br><span class="line">set b&#x3D;world</span><br><span class="line">set &#x2F;A c&#x3D;50</span><br><span class="line">set d&#x3D;%a% and %b% plus %c%</span><br><span class="line">echo %d%</span><br><span class="line"></span><br><span class="line">:: string length. there is no length function defined for finding the length of a string.</span><br><span class="line"></span><br><span class="line">@echo off</span><br><span class="line">set src&#x3D;hello world</span><br><span class="line">call :strlen src strlen</span><br><span class="line">echo string is %strlen% characters long.</span><br><span class="line">exit &#x2F;b</span><br><span class="line"></span><br><span class="line">:strlen</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:strLen_Loop</span><br><span class="line">    if not &quot;!%1:~%len%!&quot;&#x3D;&#x3D;&quot;&quot; set &#x2F;A len+&#x3D;1 &amp; goto :strLen_Loop</span><br><span class="line">(endlocal &amp; set %2&#x3D;%len%)</span><br><span class="line">goto :eof</span><br><span class="line"></span><br><span class="line">:: string to int. var is 12350 after calculation.</span><br><span class="line"></span><br><span class="line">set var&#x3D;12345</span><br><span class="line">set &#x2F;A var&#x3D;%var% + 5</span><br><span class="line">echo %var%</span><br><span class="line"></span><br><span class="line">:: sub string. the index value can be negative.</span><br><span class="line"></span><br><span class="line">%variable:~num_chars_to_skip%</span><br><span class="line">%variable:~num_chars_to_skip,num_chars_to_keep%</span><br><span class="line">%variable:~-num_chars_to_skip,-num_chars_to_keep%</span><br><span class="line"></span><br><span class="line">set x&#x3D;1000</span><br><span class="line">set y&#x3D;1</span><br><span class="line">set y&#x3D;%y%</span><br><span class="line">echo %x%</span><br><span class="line"></span><br><span class="line">set y&#x3D;%y:~-4%</span><br><span class="line">echo %y%</span><br><span class="line"></span><br><span class="line">rem output will be</span><br><span class="line">1000</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">:: string remove sub string. syntax: %src:stringtoberemoved&#x3D;%</span><br><span class="line">:: string replace string. syntas: %src:stringtobereplaced&#x3D;replacestring%</span><br><span class="line"></span><br><span class="line">set src&#x3D;The parent of substring</span><br><span class="line">echo %src%</span><br><span class="line">set src&#x3D;%src:substring&#x3D;%</span><br><span class="line">echo %src%</span><br><span class="line"></span><br><span class="line">set src&#x3D;Spaces need to be removed</span><br><span class="line">set src&#x3D;%src:&#x3D;%</span><br><span class="line">echo src</span><br><span class="line"></span><br><span class="line">:: left sub index.</span><br><span class="line">:: right sub index.</span><br><span class="line"></span><br><span class="line">set src&#x3D;This message needs changed.</span><br><span class="line">echo %src%</span><br><span class="line">set src_left&#x3D;%src:~4%</span><br><span class="line">echo %src_left%</span><br><span class="line">set src_right&#x3D;%src:~-8%</span><br><span class="line">echo %src_right%</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">:: An array is created by using the following two ways.</span><br><span class="line"></span><br><span class="line">set a[0]&#x3D;1</span><br><span class="line">set a[1]&#x3D;1</span><br><span class="line">echo %a[0]%</span><br><span class="line"></span><br><span class="line">set list &#x3D; 1 2 3 4</span><br><span class="line">(for %%a in (%list%) do (</span><br><span class="line">    echo %%a</span><br><span class="line">))</span><br><span class="line"></span><br><span class="line">:: Length of an Array</span><br><span class="line"></span><br><span class="line">set Arr[0]&#x3D;1</span><br><span class="line">set Arr[1]&#x3D;2</span><br><span class="line">set Arr[2]&#x3D;3</span><br><span class="line">set Arr[3]&#x3D;4</span><br><span class="line">set &quot;x&#x3D;0&quot;</span><br><span class="line">:SymLoop</span><br><span class="line"></span><br><span class="line">if defined Arr[%x%] (</span><br><span class="line">    call echo %%Arr[%x%]%%</span><br><span class="line">    set &#x2F;a &quot;x+&#x3D;1&quot;</span><br><span class="line">    GOTO :SymLoop</span><br><span class="line">)</span><br><span class="line">echo &quot;The length of the array is&quot; %x%</span><br><span class="line"></span><br><span class="line">:: Create Structures in Arrays(TODO: ?)</span><br><span class="line"></span><br><span class="line">set len &#x3D; 3</span><br><span class="line">set obj[0].Name &#x3D; Joe</span><br><span class="line">set obj[0].ID &#x3D; 1</span><br><span class="line">set obj[1].Name &#x3D; Mark</span><br><span class="line">set obj[1].ID &#x3D; 2</span><br><span class="line">set obj[2].Name &#x3D; Mohan</span><br><span class="line">set obj[2].ID &#x3D; 3</span><br><span class="line">set i &#x3D; 0</span><br><span class="line">:loop</span><br><span class="line"></span><br><span class="line">if %i% equ %len% goto :eof</span><br><span class="line">set cur.Name&#x3D;</span><br><span class="line">set cur.ID&#x3D;</span><br><span class="line"></span><br><span class="line">for &#x2F;f &quot;usebackq delims&#x3D;&#x3D;.tokens&#x3D;1-3&quot; %%j in (&#96;set obj[%i%]&#96;) do (</span><br><span class="line">   set cur.%%k&#x3D;%%l</span><br><span class="line">)</span><br><span class="line">echo Name &#x3D; %cur.Name%</span><br><span class="line">echo Value &#x3D; %cur.ID%</span><br><span class="line">set &#x2F;a i &#x3D; %i%+1</span><br><span class="line">goto loop</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="If-else"><a href="#If-else" class="headerlink" title="If/else"></a>If/else</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">:: &#96;if else&#96; code is placed in the brackets().</span><br><span class="line"></span><br><span class="line">If (condition) (do_something)</span><br><span class="line">ELSE (do_something_else)</span><br><span class="line"></span><br><span class="line">:: if defined, which is used to test for the existence of a variable.</span><br><span class="line">:: if exist, which is used to test for the existence of a file.</span><br><span class="line"></span><br><span class="line">set str1&#x3D;string1</span><br><span class="line">if defined str1 echo &quot;variable str1 is defined&quot;</span><br><span class="line"></span><br><span class="line">if exist C:\set2.txt echo &quot;File exists&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">:: Arithmetic Operators</span><br><span class="line">:: +, -, *, &#x2F;, %</span><br><span class="line"></span><br><span class="line">:: Relational Operators</span><br><span class="line">:: EQU, NEQ, LSS, LEQ, GTR, GEQ</span><br><span class="line"></span><br><span class="line">:: Logical Operators</span><br><span class="line">:: AND, OR, NOT</span><br><span class="line"></span><br><span class="line">:: Assignment Operators</span><br><span class="line">:: +&#x3D;, -&#x3D;, *&#x3D;, &#x2F;&#x3D;, %&#x3D;</span><br><span class="line"></span><br><span class="line">:: Bitwise Operators</span><br><span class="line">:: &amp; bitwise &quot;and&quot;</span><br><span class="line">:: | bitwise &quot;or&quot;</span><br><span class="line">:: ^ bitwise &quot;xor&quot; or exclusive or operator</span><br></pre></td></tr></table></figure>
+
+<h2 id="DATE-amp-TIME"><a href="#DATE-amp-TIME" class="headerlink" title="DATE &amp; TIME"></a>DATE &amp; TIME</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">:: format date time(TODO: ?)</span><br><span class="line">@echo off</span><br><span class="line">echo&#x2F;Today is: %year%-%month%-%day%</span><br><span class="line">goto :EOF</span><br><span class="line">setlocal ENABLEEXTENSIONS</span><br><span class="line">set t &#x3D; 2&amp;if &quot;%date%z&quot; LSS &quot;A&quot; set t &#x3D; 1</span><br><span class="line"></span><br><span class="line">for &#x2F;f &quot;skip&#x3D;1 tokens &#x3D; 2-4 delims &#x3D; (-)&quot; %%a in (&#39;echo&#x2F;^|date&#39;) do (</span><br><span class="line">   for &#x2F;f &quot;tokens &#x3D; %t%-4 delims&#x3D;.-&#x2F; &quot; %%d in (&#39;date&#x2F;t&#39;) do (</span><br><span class="line">      set %%a&#x3D;%%d&amp;set %%b&#x3D;%%e&amp;set %%c&#x3D;%%f))</span><br><span class="line">endlocal&amp;set %1&#x3D;%yy%&amp;set %2&#x3D;%mm%&amp;set %3&#x3D;%dd%&amp;goto :EOF</span><br></pre></td></tr></table></figure>
+
+<h2 id="Input-Output"><a href="#Input-Output" class="headerlink" title="Input/Output"></a>Input/Output</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">:: stdin is file 0; stdout is file 1; stderr is file 2;</span><br><span class="line">:: combine the stdout and stderr using the file number and the &#96;&amp;&#96; prefix.</span><br><span class="line"></span><br><span class="line">Dir C:\ &gt; list.txt</span><br><span class="line">Dir C:\ 2&gt; list.txt</span><br><span class="line">Dir C:\ &gt; list.txt 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">:: stdin. To work with the stdin, you have to use a workaround to archieve this.</span><br><span class="line">:: This can be done by redirecting the command prompt&#39;s own stdin, called &#96;CON&#96;.</span><br><span class="line">TYPE CON &gt; list.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="Return-Code"><a href="#Return-Code" class="headerlink" title="Return Code"></a>Return Code</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">:: ERRORLEVEL contains the return code of the last executed program or script.</span><br><span class="line"></span><br><span class="line">IF %ERRORLEVEL% NEQ 0 (</span><br><span class="line">    do_something</span><br><span class="line">)</span><br><span class="line">EXIT &#x2F;B %ERRORLEVEL% at the end of the batch file to return the error codes from the batch file.</span><br><span class="line">EXIT &#x2F;B 7</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">:: while. There is no direct while statement available in Batch Script.</span><br><span class="line">:: But we can do an implementation of this loop very easily by using the if statement and labels.</span><br><span class="line"></span><br><span class="line">:label</span><br><span class="line">if (expression) (</span><br><span class="line">    do_something</span><br><span class="line">    increment counter</span><br><span class="line">    GOTO :label</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">set &#x2F;A index&#x3D;0</span><br><span class="line">set &#x2F;A count&#x3D;5</span><br><span class="line">:while</span><br><span class="line">if %index% leq %count% (</span><br><span class="line">    echo The value of index is %index%</span><br><span class="line">    set &#x2F;A index+&#x3D;1</span><br><span class="line">    GOTO :while</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: FOR statement. list implementations</span><br><span class="line">:: Syntax: FOR %%variable IN list DO ( do_something )</span><br><span class="line"></span><br><span class="line">FOR %%f IN (1 2 3 4 5) DO (</span><br><span class="line">    echo %%f</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: FOR statement. Looping through ranges.</span><br><span class="line">:: &#x2F;L switch is used to denote that the loop is used for iterating through ranges.</span><br><span class="line"></span><br><span class="line">FOR &#x2F;L %%variable IN (lowerlimit, increment, upperlimit) DO do_something</span><br><span class="line"></span><br><span class="line">FOR &#x2F;L %%x IN (0, 1, 5) DO echo %%x</span><br><span class="line"></span><br><span class="line">:: Classic Style For Loop</span><br><span class="line"></span><br><span class="line">set &#x2F;A i &#x3D; 0;</span><br><span class="line">:loop</span><br><span class="line"></span><br><span class="line">IF %i% equ 5 GOTO END</span><br><span class="line">echo The value of i is %i%</span><br><span class="line">set &#x2F;A i&#x3D;%i%+1</span><br><span class="line">GOTO :loop</span><br><span class="line"></span><br><span class="line">:END</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">:: Function is defined by label. Called by &#96;CALL&#96; keyword.</span><br><span class="line">:: Parameter is accessed by %~index</span><br><span class="line"></span><br><span class="line">SETLOCAL</span><br><span class="line">CALL :Display 5 10</span><br><span class="line">EXIT &#x2F;B %ERRORLEVEL%</span><br><span class="line"></span><br><span class="line">:Display</span><br><span class="line">echo The first parameter is %~1</span><br><span class="line">echo The second parameter is %~2</span><br><span class="line">EXIT &#x2F;B 0</span><br><span class="line"></span><br><span class="line">:: Return value is implemented by simply passing variables names which will hold the return values.</span><br><span class="line">:: Remarks: There is no sign &#96;%&#96; before and after.</span><br><span class="line"></span><br><span class="line">SETLOCAL</span><br><span class="line">CALL :Display return_value</span><br><span class="line">echo %return_value%</span><br><span class="line"></span><br><span class="line">:Display</span><br><span class="line">set &quot;%~3&#x3D;15&quot;</span><br><span class="line"></span><br><span class="line">:: Local Variable can be used to avoid name conflicts and</span><br><span class="line">:: Keep variable changes local to the function.</span><br><span class="line"></span><br><span class="line">:: Following output will be &quot;Outer; Outer&quot;.</span><br><span class="line">:: The variable &quot;str&quot; is being localized in the function SetValue,</span><br><span class="line">:: Thus even though the str value is being returned back to the main function,</span><br><span class="line">:: The value of str in the main function will not be replaced.</span><br><span class="line"></span><br><span class="line">@echo off</span><br><span class="line">set str&#x3D;Outer</span><br><span class="line">@echo %str%</span><br><span class="line">CALL :SetValue str</span><br><span class="line">@echo %str%</span><br><span class="line"></span><br><span class="line">:SetValue</span><br><span class="line">SETLOCAL</span><br><span class="line">set str&#x3D;Inner</span><br><span class="line">set &quot;%~1&#x3D;%str%&quot;</span><br><span class="line">ENDLOCAL</span><br><span class="line">EXIT &#x2F;B 0</span><br><span class="line"></span><br><span class="line">:: Recursive Functions</span><br><span class="line"></span><br><span class="line">set &quot;fst&#x3D;0&quot;</span><br><span class="line">set &quot;fib&#x3D;1&quot;</span><br><span class="line">set &quot;limit&#x3D;10000000&quot;</span><br><span class="line">call :myFibo fib,%fst%,%limit%</span><br><span class="line">echo.The next Fibonacci number greater or equal %limit% is %fib%.</span><br><span class="line">echo.&amp;pause&amp;goto:eof</span><br><span class="line"></span><br><span class="line">:myFibo</span><br><span class="line">SETLOCAL</span><br><span class="line">set &#x2F;A &quot;Number1&#x3D;%~1&quot;</span><br><span class="line">set &#x2F;A &quot;Number2&#x3D;%~2&quot;</span><br><span class="line">set &#x2F;A &quot;Limit&#x3D;%~3&quot;</span><br><span class="line">set &#x2F;A &quot;Number3&#x3D;Number1+Number2&quot;</span><br><span class="line"></span><br><span class="line">IF &#x2F;i %NumberN% LSS %Limit% call :myFibo NumberN,%Number1%,%Limit%</span><br><span class="line"></span><br><span class="line">(ENDLOCAL</span><br><span class="line">    IF &quot;%~1&quot; NEQ &quot;&quot; Set &quot;%~1&#x3D;%NumberN%&quot;</span><br><span class="line">)GOTO:eof</span><br><span class="line"></span><br><span class="line">:: File I&#x2F;O operations</span><br><span class="line">:: Creating files; Deleting files;</span><br><span class="line"></span><br><span class="line">echo &quot;Hello&quot; &gt;C:\new.txt</span><br><span class="line"></span><br><span class="line">DEL [&#x2F;P] [&#x2F;F] [&#x2F;S] [&#x2F;Q] [&#x2F;A[[:]attributes]] names</span><br><span class="line"></span><br><span class="line">:: Writing files;</span><br><span class="line">:: Writing use &#96;&gt;&#96;</span><br><span class="line">:: Appending use &#96;&gt;&gt;&#96;</span><br><span class="line"></span><br><span class="line">DIR C:\ &gt;C:\write.txt</span><br><span class="line"></span><br><span class="line">echo &quot;This is the directory listing of C: Drive&quot; &gt;C:new.txt</span><br><span class="line">DIR C:\ &gt;&gt;C:\new.txt</span><br><span class="line"></span><br><span class="line">:: Reading files;</span><br><span class="line"></span><br><span class="line">FOR &#x2F;F &quot;token&#x3D;* delims&#x3D;&quot; %%x in (new.txt) DO echo %%x</span><br><span class="line"></span><br><span class="line">:: Renaming files;</span><br><span class="line"></span><br><span class="line">RENAME [drive:][path][directoryname1 | filename1] [directoryname2 | filename2]</span><br><span class="line"></span><br><span class="line">rename *.txt *.bak</span><br><span class="line">rename &quot;TESTA.txt&quot; &quot;TESTB.txt&quot;</span><br><span class="line"></span><br><span class="line">:: Moving files;</span><br><span class="line"></span><br><span class="line">MOVE [&#x2F;Y | &#x2F;-Y] [drive:][path]filename1[,...] destination</span><br><span class="line"></span><br><span class="line">:: Batch Scripts-Files Pipes</span><br><span class="line">:: The pipe operator (|) takes the output of one command and directs it into the input of another command.</span><br><span class="line"></span><br><span class="line">:: The following command sorts the contents of the directory C:\</span><br><span class="line">:: In this example, both commands start simultaneously, but then the sort command pauses untile it receives</span><br><span class="line">:: the dir command&#39;s output.</span><br><span class="line"></span><br><span class="line">DIR C:\ | sort</span><br><span class="line"></span><br><span class="line">:: The content of the file C:\new.txt are sent to the sort command through the pipe filter.</span><br><span class="line">TYPE C:\new.txt | sort</span><br><span class="line"></span><br><span class="line">:: The following command will first take all the files defined in C:\,</span><br><span class="line">:: then using the pipe command, will find all the files with the .txt entension.</span><br><span class="line">:: it will then take this output and print it to the file AllText.txt.</span><br><span class="line">DIR C:\ |  find &quot;txt&quot; &gt; AllText.txt</span><br><span class="line"></span><br><span class="line">:: Find the file names that include the string txt,</span><br><span class="line">:: and then displays them in one command prompt window at a time.</span><br><span class="line">DIR C:\ &#x2F;s &#x2F;b | find &quot;txt&quot; | more</span><br><span class="line"></span><br><span class="line">:: Create Folders</span><br><span class="line"></span><br><span class="line">MKDIR [drive:]path</span><br><span class="line">MD [drive:]path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><p><code>TASKLIST</code> command can be used to get the list of currently running process.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TASKLIST [&#x2F;S system [&#x2F;U username [&#x2F;P [password]]]] [&#x2F;M [module] | &#x2F;SVC | &#x2F;V] [&#x2F;FI filter] [&#x2F;FO format] [&#x2F;NH]</span><br><span class="line"></span><br><span class="line">:: The following command will only fetch those processes whose memory is greater than 40MB</span><br><span class="line">TASKLIST &#x2F;FI &quot;memusage gt 40960&quot;</span><br></pre></td></tr></table></figure>
+
+<p>/S                 specifies the remote system to connect to.<br>/U  [domain]user  specifies the user context under which the command should execute.<br>/P                 specifies the password for the given user context. Prompts for input if omitted.<br>/M                 list all tasks currently using the given exe/dll.<br>/SVC               display services hosted in each process.<br>/V                 display verbose task information.<br>/FI filter         tasks that match a given criteria specified by the filter.<br>/FO format         specifies the output format. Valid value: “TABLE”, “LIST”, “CSV”.<br>/NH                no header. Valid only for “TABLE” and “CSV” formats.</p>
+<p><code>TASKKILL</code> command can kill a task from a windows command line by process id or image name.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TASKKILL [&#x2F;S system [&#x2F;U username [&#x2F;P [password]]]] &#123; [&#x2F;FI filter] [&#x2F;PID processid | &#x2F;IM imagename] &#125; [&#x2F;T] [&#x2F;F]</span><br></pre></td></tr></table></figure>
+
+<p>/T                  Terminates the specified process and any child processes which were started by it.<br>/F                  Forcefully</p>
+<p><code>START</code> command can start a new process.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START &quot;title&quot; [&#x2F;D path] [options] &quot;command&quot; [parameters]</span><br></pre></td></tr></table></figure>
+
+<p>opotions:</p>
+<p>/MIN            start window minimized<br>/MAX            start window maximized<br>/LOW            IDLE priority class<br>/NORMAL         NORMAL priority class<br>/ABOVENORMAL    ABOVENORMAL priority class<br>/BELOWNORMAL    BELOWNORMAL priority class<br>/HIGH           HIGH priority class<br>/REALTIME       REALTIME priority class</p>
+<h2 id="Aliases"><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOSKEY [options] [macroname&#x3D;[text]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Devices"><a href="#Devices" class="headerlink" title="Devices"></a>Devices</h2><p>Batch Script can work with devices attached to system. This is known as the <code>DevCon</code>(device console).exe.</p>
+<p><code>DevCon</code> can verify that a driver is installed and configured correctly,<br>including proper INF files, driver stack, driver files, and driver package.<br>You can also use the DevCon commands(enable, disable, install, start, stop, and continue)<br>in scripts to test the driver.</p>
+<h2 id="Registry"><a href="#Registry" class="headerlink" title="Registry"></a>Registry</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">:: Reading from the Registry</span><br><span class="line">:: REG QUERY</span><br><span class="line">REG QUERY [ROOT\]RegKey &#x2F;v ValueName [&#x2F;s]</span><br><span class="line">REG QUERY [ROOT\]RegKey &#x2F;ve -- This returns the (default) value</span><br><span class="line">REG QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Windows\</span><br><span class="line"></span><br><span class="line">:: Adding to the Registry</span><br><span class="line">REG ADD [ROOT\]RegKey &#x2F;v ValueName [&#x2F;t DataType] [&#x2F;S Separator] [&#x2F;d Data] [&#x2F;f]</span><br><span class="line">REG ADD [ROOT\]RegKey &#x2F;ve [&#x2F;d Data] [&#x2F;f]</span><br><span class="line"></span><br><span class="line">:: Deleting from the Registry</span><br><span class="line">REG DEL [ROOT\]RegKey &#x2F;v ValueName [&#x2F;f]</span><br><span class="line">REG DEL [ROOT\]RegKey &#x2F;ve [&#x2F;f]</span><br><span class="line">REG DEL [ROOT\]RegKey &#x2F;va [&#x2F;f]</span><br><span class="line"></span><br><span class="line">:: Copying from the registry</span><br><span class="line">REG COPY [\\SourceMachine\][ROOT\]RegKey [\\DestMachine][ROOT\]RegKey</span><br><span class="line">REG COPY HKEY_CURRENT_USER\Console HKEY_CURRENT_USER\Console\Test</span><br><span class="line">REG QUERY HKEY_CURRENT_USER\Console\Test</span><br><span class="line"></span><br><span class="line">:: Comparing Registry Keys</span><br><span class="line">REG COMP [ROOT\]RegKey [ROOT\]RegKey [&#x2F;v ValueName] [Output] [&#x2F;s]</span><br><span class="line">REG COMP [ROOT\]RegKey [ROOT\]RegKey [&#x2F;ve] [Output] [&#x2F;s]</span><br><span class="line">REG COMPARE HKEY_CURRENT_USER\Console HKEY_CURRENT_USER\Console\Test</span><br></pre></td></tr></table></figure>
+
+<h2 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h2><p><code>Net</code> command is used to update, fix, or view the network or network settings.</p>
+<h2 id="Printing"><a href="#Printing" class="headerlink" title="Printing"></a>Printing</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PRINT [&#x2F;D:device] [[drive:][path]filename[...]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:: REM out the @ECHO OFF</span><br><span class="line">:: Run the batch file with the required command line parameters,</span><br><span class="line">:: redirecting all output to a log file for later comparision.</span><br><span class="line"></span><br><span class="line">test.bat &gt; batch.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p><code>TYPE</code> command can be used to output file contents.<br><code>ECHO</code> command can be used to insert marks.<br><code>Counter</code> can be used to help find out multiple calles to subroutine.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">:: Windows Versions</span><br><span class="line">IF NOT &quot;%OS%&quot;&#x3D;&#x3D;&quot;Windows_NT&quot; GOTO :DontRun</span><br><span class="line"></span><br><span class="line">:: Check for Windows NT 4</span><br><span class="line">VER | FIND &quot;Windows NT&quot; &gt; NUL &amp;&amp; GOTO :DontRun</span><br><span class="line"></span><br><span class="line">:: Check for Windows 2000</span><br><span class="line">VER | FIND &quot;Window 2000&quot; &gt; NUL &amp;&amp; GOTO :DontRun</span><br><span class="line"></span><br><span class="line">:: Actual Code here...</span><br><span class="line"></span><br><span class="line">EXIT</span><br><span class="line"></span><br><span class="line">:DontRun</span><br><span class="line">ECHO This batch file was written for Windows XP and later version only.</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/10/10/network/tcp_ip_osi_model/" title="TCP/IP vs OSI Model">
+  <strong>上一篇：</strong><br/>
+  <span>
+  TCP/IP vs OSI Model</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/09/17/math/matrix/"  title="Matrix">
+ <strong>下一篇：</strong><br/> 
+ <span>Matrix
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Command-Line-Arguments"><span class="toc-number">1.</span> <span class="toc-text">Command Line Arguments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set-Command"><span class="toc-number">2.</span> <span class="toc-text">Set Command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Environment-Variables"><span class="toc-number">3.</span> <span class="toc-text">Environment Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Comments"><span class="toc-number">4.</span> <span class="toc-text">Comments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-number">5.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">6.</span> <span class="toc-text">Array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#If-else"><span class="toc-number">7.</span> <span class="toc-text">If&#x2F;else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operators"><span class="toc-number">8.</span> <span class="toc-text">Operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DATE-amp-TIME"><span class="toc-number">9.</span> <span class="toc-text">DATE &amp; TIME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-Output"><span class="toc-number">10.</span> <span class="toc-text">Input&#x2F;Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Return-Code"><span class="toc-number">11.</span> <span class="toc-text">Return Code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loops"><span class="toc-number">12.</span> <span class="toc-text">Loops</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions"><span class="toc-number">13.</span> <span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Process"><span class="toc-number">14.</span> <span class="toc-text">Process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Aliases"><span class="toc-number">15.</span> <span class="toc-text">Aliases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Devices"><span class="toc-number">16.</span> <span class="toc-text">Devices</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Registry"><span class="toc-number">17.</span> <span class="toc-text">Registry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network"><span class="toc-number">18.</span> <span class="toc-text">Network</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Printing"><span class="toc-number">19.</span> <span class="toc-text">Printing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debugging"><span class="toc-number">20.</span> <span class="toc-text">Debugging</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

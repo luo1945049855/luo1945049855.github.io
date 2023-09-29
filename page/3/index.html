@@ -1,0 +1,997 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="敏于事而慎于言">
+<meta property="og:type" content="website">
+<meta property="og:title" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:url" content="https://luo1945049855.github.io/page/3/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="敏于事而慎于言">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/cpp/std_cross_dll/" title="Use std classes cross dll boundary" itemprop="url">Use std classes cross dll boundary</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Keep in mind one thing before you read further: My answer is coming from the point of view of writing portable code that can be used in applications made up of modules compiled under different compilers. This can include different versions or even different patch levels of the same compiler.</p>
+<p>How can I use stl-classes in my dll-interface?</p>
+<p>Answer: You often can’t1.</p>
+<p>Reason: The STL is a code library, not a binary library like a DLL. It does not have a single ABI that is guaranteed to be the same wherever you might use it. Indeed, STL does stand for “Standard Template Library,” but a key operative word here besides Standard is Template.</p>
+<p>The Standard defines the methods and data members each STL class is required to provide, and it defines what those methods are to do; but no more. In particular, the Standard doesn’t specify how compiler writers should implement the Standard-defined functionality. Compiler writers are free to provide a implementation of an STL class that adds member functions and member variables not listed in the Standard, so long as those members which are defined in the Standard are still there and do what the Standard says.</p>
+<p>Maybe an example is in order. The basic_string class is defined in the Standard as having certain member functions &amp; variables. The actual definition is almost 4 pages in the Standard, but here’s just a snippet of it:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="built_in">std</span> &#123;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">charT</span>, <span class="title">class</span> <span class="title">traits</span> = <span class="title">char_traits</span>&lt;charT&gt;,</span></span><br><span class="line"><span class="class">         <span class="title">class</span> <span class="title">Allocator</span> = <span class="title">allocator</span>&lt;charT&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">basic_string</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">size_type <span class="title">size</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">  <span class="function">size_type <span class="title">length</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">  <span class="function">size_type <span class="title">max_size</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(size_type n, charT c)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(size_type n)</span></span>;</span><br><span class="line">  <span class="function">size_type <span class="title">capacity</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">reserve</span><span class="params">(size_type res_arg = <span class="number">0</span>)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Consider the size() and length() member functions. There is nothing in the Standard that specified member variables for holding this information. Indeed, there are no member variables defined at all, not even to hold the string itself. So how is this implemented?</p>
+<p>The answer is, many different ways. Some compilers might use a size_t member variable to hold the size and a char* to hold the string. Another one might use a pointer to some other data store which holds that data (this might be the case in a reference-counted implementation). In fact, different versions or even patch levels of the same compiler may change these implementation details. You can’t rely on them. So, MSVC 10’s implementation might look like this:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="built_in">std</span> &#123;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">charT</span>, <span class="title">class</span> <span class="title">traits</span> = <span class="title">char_traits</span>&lt;charT&gt;,</span></span><br><span class="line"><span class="class">         <span class="title">class</span> <span class="title">Allocator</span> = <span class="title">allocator</span>&lt;charT&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">basic_string</span> &#123;</span></span><br><span class="line"><span class="keyword">char</span>* m_pTheString;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">basic_string::size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">strlen</span>(m_pTheString;) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>…Whereas MSVC 10 with SP1 might look like this:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="built_in">std</span> &#123;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">charT</span>, <span class="title">class</span> <span class="title">traits</span> = <span class="title">char_traits</span>&lt;charT&gt;,</span></span><br><span class="line"><span class="class">         <span class="title">class</span> <span class="title">Allocator</span> = <span class="title">allocator</span>&lt;charT&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">basic_string</span> &#123;</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; m_TheString;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">basic_string::size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> m_TheString.size(); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>I’m not saying they do look like this, I’m saying they might. The point here is the actual implementation is platform-dependent, and you really have no way of knowing what it will be anywhere else.</p>
+<p>Now say you use MSVC10 to write a DLL that exports this class:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyGizmo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> name_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>What is the sizeof(MyGizmo)?</p>
+<p>Assuming my proposed implementations above, under MSVC10 its going to be <code>sizeof(char*)</code>, but under SP1 it will be <code>sizeof(vector&lt;char&gt;)</code>. If you write an application in VC10 SP1 that uses the DLL, the size of the object will look different than it actually is. The binary interface is changed.</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CPP/">CPP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/cpp/shared_ptr/" title="Shared_Ptr" itemprop="url">Shared_Ptr</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">shared_ptr</span> &#123;</span></span><br><span class="line">    ......</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T * px;                         <span class="comment">//contained pointer</span></span><br><span class="line">    boost::detail::shared_count pn; <span class="comment">//reference counter</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">shared_count</span> &#123;</span></span><br><span class="line">    ......</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    sp_counted_base * pi_;      <span class="comment">//important</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sp_counted_base</span> &#123;</span></span><br><span class="line">    ......</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//pointer shared count</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="keyword">atomic_int_least32_t</span> use_count_;   </span><br><span class="line">    <span class="comment">//self(sp_counted_bast *) shared count </span></span><br><span class="line">    <span class="built_in">std</span>::<span class="keyword">atomic_int_least32_t</span> weak_count_;  </span><br><span class="line"> &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="enable-shared-from-this-作用"><a href="#enable-shared-from-this-作用" class="headerlink" title="enable_shared_from_this 作用"></a>enable_shared_from_this 作用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">enable_shared_from_this</span> &#123;</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// inherited from enable_shared_from_this</span></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">X</span>, <span class="title">class</span> <span class="title">Y</span>, <span class="title">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span> <span class="title">void</span> <span class="title">sp_enable_shared_from_this</span>(</span></span><br><span class="line"><span class="class">     <span class="title">boost</span>:</span>:<span class="built_in">shared_ptr</span>&lt;X&gt; <span class="keyword">const</span> * ppx, Y <span class="keyword">const</span> * py,</span><br><span class="line">     boost::enable_shared_from_this&lt; T &gt; <span class="keyword">const</span> * pe ) &#123;</span><br><span class="line">    <span class="keyword">if</span>( pe != <span class="number">0</span> ) &#123;</span><br><span class="line">        pe-&gt;_internal_accept_owner( ppx, <span class="keyword">const_cast</span>&lt; Y* &gt;( py ) );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// not inherited from enable_shared_from_this</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">sp_enable_shared_from_this</span><span class="params">( ... )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CPP/">CPP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/cpp/warnings/" title="Warnings" itemprop="url">Warnings</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="c4251"><a href="#c4251" class="headerlink" title="c4251"></a>c4251</h2><p>当导出类中包含未导出类的数据成员时出现，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TemplateClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> --<span class="title">declspec</span>(<span class="title">dllexport</span>) <span class="title">ExportedClass</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    TemplateClass&lt;<span class="keyword">int</span>&gt; m_member;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>Pimpl(Pointer to implementation)模式</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CPP/">CPP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/windows/hook/" title="Hook" itemprop="url">Hook</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HHOOK <span class="title">SetWindowsHookExA</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">int</span>       idHook,</span></span></span><br><span class="line"><span class="function"><span class="params">  HOOKPROC  lpfn,</span></span></span><br><span class="line"><span class="function"><span class="params">  HINSTANCE hmod,</span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD     dwThreadId</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br><span class="line"><span class="function">BOOL <span class="title">UnhookWindowsHookEx</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  HHOOK hhk</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>当dwThreadId为0或为其它进程创建时，lpfn必须在一个dll中。</li>
+<li>当dwThreadId为0时，钩子关联所有线程。</li>
+<li>hmod为lpfn所在dll句柄。当dwThreadId为当前进程创建或lpfn在当前进程代码中时，hmod必须为NULL。</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-setwindowshookexa">setwindowshookexa</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/winmsg/using-hooks">using-hooks</a></p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/windows/io-completion-ports/" title="I/O Completion Ports" itemprop="url">I/O Completion Ports</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>I/O completion ports 是多核系统下，处理多个异步I/O请求的高效线程模型。当进程创建一个I/O completion port对象，系统创建一个队列与之关联，用来将相关请求放入队列。与接收到I/O请求创建线程相比，I/O completion port与线程池配合，可以使进程在处理并发异步请求时，更快更有效率。</p>
+<p>可以理解为I/O completion port为I/O completion队列，线程池根据队列内容进行处理。</p>
+<p>相关windows api包括：</p>
+<ol>
+<li><p>CreateIoCompletionPort<br>将file handle与completion key关联，得到I/O completion port。</p>
+</li>
+<li><p>GetQueuedCompletionStatus<br>通过I/O completion port得到completion key和overlapped(that was specified when the completed I/O operation was started.)。<br>注意：completion key与file handle关联。overlapped可区分input/output。</p>
+</li>
+<li><p>PostQueuedCompletionStatus</p>
+</li>
+<li><p>WriteFile</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WriteFile(handle_.Get(), message-&gt;data(),</span><br><span class="line">          <span class="keyword">static_cast</span>&lt;DWORD&gt;(message-&gt;data_num_bytes()), <span class="literal">NULL</span>,</span><br><span class="line">          &amp;write_context_.overlapped)</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>ReadFile</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">::ReadFile(handle_.Get(), buffer, <span class="keyword">static_cast</span>&lt;DWORD&gt;(buffer_capacity),</span><br><span class="line">           <span class="literal">NULL</span>, &amp;read_context_.overlapped);</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/fileio/i-o-completion-ports">I/O Completion Ports</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/windows/owned-windows/" title="Owned Windows" itemprop="url">Owned Windows</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>An overlapped or pop-up window can be owned by another overlapped or pop-up window. Being owned places several constraints on a window.</p>
+<p>An owned window is always above its owner in the z-order.<br>The system automatically destroys an owned window when its owner is destroyed.<br>An owned window is hidden when its owner is minimized.<br>Only an overlapped or pop-up window can be an owner window; a child window cannot be an owner window. An application creates an owned window by specifying the owner’s window handle as the hwndParent parameter of CreateWindowEx when it creates a window with the WS_OVERLAPPED or WS_POPUP style. The hwndParent parameter must identify an overlapped or pop-up window. If hwndParent identifies a child window, the system assigns ownership to the top-level parent window of the child window. After creating an owned window, an application cannot transfer ownership of the window to another window.</p>
+<p>Dialog boxes and message boxes are owned windows by default. An application specifies the owner window when calling a function that creates a dialog box or message box.</p>
+<p>An application can use the GetWindow function with the GW_OWNER flag to retrieve a handle to a window’s owner.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-gb/windows/win32/winmsg/window-features">Window Features</a></li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/windows/memory_type/" title="Memory Type" itemprop="url">Memory Type</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1984186/what-is-private-bytes-virtual-bytes-working-set">原地址：What is private bytes, virtual bytes, working set?</a></p>
+<ul>
+<li><p>Private Bytes：指可执行文件申请的，不一定是实际使用的。private代表它不包括memory-mapped files（例如：共享dll）占用的内存。但是它是包括dll中的函数所分配内存的，所以Private Bytes大小的变化可能由可执行文件和共享dll引起。Private Bytes不止是物理内存，还可能page to disk或者page list(i.e. no longer in use, but not paged yet either)</p>
+</li>
+<li><p>Working Set：代表进程占用的全部物理内存（RAM），但是不同于Private Bytes，它包括memory-mapped files（例如：共享dll）和其他资源，与Private Bytes相比，更加不能代表一个可执行文件使用的内存。任务管理器中的“内存使用”就是该值，最近几年造成了很多的误解。Working Set代表占用RAM中的内存大小，所以访问其中内存地址时不会有page fault。注意：虽然page list仍然在内存中，当你最小化窗口时，“内存使用”可能会突然减小。</p>
+</li>
+<li><p>Virtual Bytes：代表整个进程占用的全部虚拟内存空间，包括memory-mapped files、page list以及page to disk。当系统中存在大量进程时，所有进程的Virtual Bytes的和会比机器的物理内存大出很多。</p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/windows/using-lockbits-in-gdi+/" title="Using LockBits in GDI+" itemprop="url">Using LockBits in GDI+</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Understanding how to use LockBits is essential for creating high performance GDI+ applications. Usually, GDI+ is thought of as a low performance graphics API. While arguments can be made for this, if you use GDI+ properly, you can achieve great performance.</p>
+<p>The easiest way to access pixel data is to use GetPixel and SetPixel member functions of the Bitmap class. Unfortunately, using these functions has a great amount of overhead. When working with large images, doing any type of processing with GetPixel and SetPixel is simply too slow and not acceptable for modern applications. LockBits is specifically used to make the data in a bitmap directly available to you, the programmer. The workflow is very simple:</p>
+<ol>
+<li>Use LockBits to obtain a raw array of data</li>
+<li>Perform image processing using the standard array of data</li>
+<li>Use UnlockBits to commit the new data back into the bitmap</li>
+</ol>
+<h2 id="Calling-LockBits"><a href="#Calling-LockBits" class="headerlink" title="Calling LockBits"></a>Calling LockBits</h2><p>When calling LockBits, you can specify a specific rectangular portion of the bitmap you want to manipulate, the read/write mode, the pixel format you would like the data to be in.</p>
+<p>// We must use LockBits to get the raw data. GetPixel and SetPixel are simply too slow</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BitmapData bitmapData;</span><br><span class="line">pBitmap-&gt;LockBits(</span><br><span class="line">    &amp;Rect(<span class="number">0</span>,<span class="number">0</span>,pBitmap-&gt;GetWidth(), pBitmap-&gt;GetHeight()), </span><br><span class="line">    ImageLockModeWrite,</span><br><span class="line">    PixelFormat32bppARGB, &amp;bitmapData);</span><br></pre></td></tr></table></figure>
+
+<h2 id="The-format-of-the-pixel-data"><a href="#The-format-of-the-pixel-data" class="headerlink" title="The format of the pixel data"></a>The format of the pixel data</h2><p>It is important for you to realize how the data is formatted. The data is located in the Scan0 member variable in the BitmapData class. This is a standard, one dimensional array which stores information for a 2D image. Therefore, that 2D information is packed into a 1D array. In order to gain access to a specific pixel, you will need to know the X and Y coordinate, along with the Stride.</p>
+<p><img src="/images/LockBits.jpg?raw=true%22LockBits%22" alt="LockBits"></p>
+<p>As you can see in the image above, not all data elements are used. Furthermore, the Scan0 array is of the type void. Before accessing data, it is a good idea to keep another pointer around with the same element size as that in the format you picked when calling the LockBits function. For example, in the code above, a 32 bits per pixel format was selected. Therefore, it would be a good idea to create a pointer of the type int, which is 32 bits for most compilers.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> *pRawBitmapOrig = (<span class="keyword">unsigned</span> <span class="keyword">int</span>*)bitmapData.Scan0;   <span class="comment">// for easy access and indexing</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> curColor = pRawBitmapCopy[curY * bitmapData.Stride / <span class="number">4</span> + curX];</span><br><span class="line"><span class="keyword">int</span> b = curColor &amp; <span class="number">0xff</span>;</span><br><span class="line"><span class="keyword">int</span> g = (curColor &amp; <span class="number">0xff00</span>) &gt;&gt; <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> r = (curColor &amp; <span class="number">0xff0000</span>) &gt;&gt; <span class="number">16</span>;</span><br><span class="line"><span class="keyword">int</span> a = (curColor &amp; <span class="number">0xff000000</span>) &gt;&gt; <span class="number">24</span>;</span><br></pre></td></tr></table></figure>
+
+<p>As you can see in the above code, casting the Scan0 array to another pointer with 32 bits per data element makes accessing the pixel data very straightforward.</p>
+<h2 id="Unlocking-the-bits"><a href="#Unlocking-the-bits" class="headerlink" title="Unlocking the bits"></a>Unlocking the bits</h2><p>As soon as you’re finished manipulating the image data, you’ll want to call UnlockBits. This function essentially commits the data in the Scan0 array back into the bitmap, and also does memory management if any memory had to be allocated in the first place with LockBits.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pBitmap-&gt;UnlockBits(&amp;bitmapData);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Using LockBits and Unlock bits can make simple functions such as image convolution perform 20 times as fast when compared to using GetPixel and SetPixel. Just remember that if you’re editing even a moderately small number of pixels, it might be a good idea to take route described in this tutorial instead of having to make thousands or even millions of functions calls.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="http://supercomputingblog.com/graphics/using-lockbits-in-gdi/">Using LockBits in GDI+</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/09/09/windows/wtl-thunk/" title="WTL Thunk" itemprop="url">WTL Thunk</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-09-08T16:00:00.000Z" itemprop="datePublished"> Published 2020-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Thunk是一段机器码，主要有两个功能：</p>
+<ol>
+<li>改变调用栈;</li>
+<li>跳转到目标程序；</li>
+</ol>
+<p>WTL中使用Thunk技术将GWLP_WNDPROC初始回调函数(一般为”StartWindowProc”)替换为用户期望回调函数（一般为”WindowProc”)。<br>初次接触时有几个问题可能费解：</p>
+<ol>
+<li>WTL在何处RegisterClass</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T::GetWndClassInfo().Register()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>WTL在何处存放this指针供StartWindowProc获取</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_AtlWinModule.AddCreateWndData(&amp;<span class="keyword">this</span>-&gt;m_thunk.cd, <span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Thunk细节</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">stdcallthunk</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	DWORD   m_mov;          <span class="comment">// mov dword ptr [esp+0x4], pThis (esp+0x4 is hWnd)</span></span><br><span class="line">	DWORD   m_this;         <span class="comment">//</span></span><br><span class="line">	BYTE    m_jmp;          <span class="comment">// jmp WndProc</span></span><br><span class="line">	DWORD   m_relproc;      <span class="comment">// relative jmp</span></span><br><span class="line">	<span class="function">BOOL <span class="title">Init</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">		_In_ DWORD_PTR proc,</span></span></span><br><span class="line"><span class="function"><span class="params">		_In_opt_ <span class="keyword">void</span>* pThis)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		m_mov = <span class="number">0x042444C7</span>;  <span class="comment">//C7 44 24 0C</span></span><br><span class="line">		m_this = PtrToUlong(pThis);</span><br><span class="line">		m_jmp = <span class="number">0xe9</span>;</span><br><span class="line">		m_relproc = DWORD((INT_PTR)proc - ((INT_PTR)<span class="keyword">this</span>+<span class="keyword">sizeof</span>(_stdcallthunk)));</span><br><span class="line">		<span class="comment">// write block from data cache and</span></span><br><span class="line">		<span class="comment">//  flush from instruction cache</span></span><br><span class="line">		FlushInstructionCache(GetCurrentProcess(), <span class="keyword">this</span>, <span class="keyword">sizeof</span>(_stdcallthunk));</span><br><span class="line">		<span class="keyword">return</span> TRUE;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//some thunks will dynamically allocate the memory for the code</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span>* <span class="title">GetCodeAddress</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	_Ret_maybenull_ _Post_writable_byte_size_(<span class="keyword">sizeof</span>(_stdcallthunk)) <span class="function"><span class="keyword">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(_In_ <span class="keyword">size_t</span>)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> __AllocStdCallThunk();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(_In_opt_ <span class="keyword">void</span>* pThunk)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        __FreeStdCallThunk(pThunk);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在 Init() 函数中这组汇编指令被初始化为下面的指令：</p>
+<p>mov dword ptr [esp+0x4], pThis<br>jmp (int)proc - ((int)this+sizeof(_WndProcThunk))</p>
+<p>它完成的功能是，用窗口类的指针 pThis 代替窗口句柄 hWnd （ esp+0x4 中放的就是 hWnd ），然后跳转到传入的 proc 函数处（ (int)proc - ((int)this+sizeof(_WndProcThunk)) 是 proc 与 thunk 之间的距离）。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/chenyujing1234/article/details/7443084">WTL中 Thunk技术本质</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/tttyd/article/details/4562233">ATL Thunk机制学习</a></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/07/18/life-of-a-pixel/" title="Life of a Pixel" itemprop="url">Life of a Pixel</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2020-07-18T06:00:00.000Z" itemprop="datePublished"> Published 2020-07-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>DOM-&gt;Style-&gt;Layout-&gt;Paint-&gt;Raster-&gt;GPU-&gt;Pixel</p>
+<h2 id="Document-Object-Model-DOM"><a href="#Document-Object-Model-DOM" class="headerlink" title="Document Object Model(DOM)"></a>Document Object Model(DOM)</h2><h2 id="Style-CSS"><a href="#Style-CSS" class="headerlink" title="Style(CSS)"></a>Style(CSS)</h2><p>CSS parser builds a model of the style rules. This works similar to the html parser except the css syntax is more specified(less forgiving): parse…turtles…actual style.</p>
+<p>Furthermore, it’s not trivial to determine which elements a style rule selects.<br>Some elements may be selected by more than one rule, with conflicting declarations for a particular style property.<br>The resolution of this is known as the “cascade” in CSS.</p>
+<h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><h2 id="Compositing"><a href="#Compositing" class="headerlink" title="Compositing"></a>Compositing</h2><ul>
+<li><p>Decompose the page into layers which raster independently.</p>
+</li>
+<li><p>Combine the layers on another thread(<code>Compositor thread</code>).</p>
+</li>
+<li><p>The Compositor thread can handle input events from browser process. </p>
+</li>
+<li><p>Update layer list before paint because each layer is painted separately. In the future, layers will be created after paint(?).</p>
+</li>
+<li><p>The Compositor can apply various properties to the way it draws a layer: transform, clip, effect, scroll.</p>
+</li>
+<li><p>The Compositor thread has two copies of the tree, so that it can raster tiles from a new commit  while drawing the previous commit. We want to ensure atomic commits and two trees is the approach to do this.(Raster and Draw Quad same time.)</p>
+</li>
+<li><p>Tiling:<br>  Layers can be large-rastering the whole layer is expensive, and unnecessary if only part of it is visible.<br>  Tiles are the unit of raster work. Tiles are rastered with a pool of dedicated <code>raster threads</code>(this include image decodes).<br>  Tiles are prioritized based on their distance from the viewport.<br>  (Note: a layer actually has multiple tilings for different resolutions.)</p>
+</li>
+</ul>
+<h2 id="Paint"><a href="#Paint" class="headerlink" title="Paint"></a>Paint</h2><p>Paint walks the layout tree and records a linear list of paint operations.</p>
+<h2 id="Raster"><a href="#Raster" class="headerlink" title="Raster"></a>Raster</h2><p>Raster is the step after paint, which turns paint ops into bitmaps.</p>
+<ul>
+<li>Accelerated by the GPU in <code>GPU process</code>.</li>
+<li>Rasterization issues OpenGL calls through Skia From <code>render process</code>.</li>
+<li>OpenGL, DirectX(Windows, ANGLE translate OpenGL to DirectX which build by Google).</li>
+<li>The output of raster is tile bitmap in GPU memory.</li>
+</ul>
+<h2 id="Draw-Quad-layers"><a href="#Draw-Quad-layers" class="headerlink" title="Draw Quad(layers)"></a>Draw Quad(layers)</h2><ul>
+<li>Once all the tiles are rastered, the compositor thread generates “draw quads”.</li>
+<li>A quad is like a command to draw a tile in a particular location on the screen, taking into account all the transformations applied by the layer tree.</li>
+<li>Each quad reference the tile’s rastered output in memory.</li>
+<li>The quads are wrapped up in a CompositorFrame object which gets submitted to the gpu process.</li>
+</ul>
+<h2 id="Display-viz"><a href="#Display-viz" class="headerlink" title="Display(viz)"></a>Display(viz)</h2><ul>
+<li>Compositor frames come from multiple renders, and from the brwoser(which has its own compositor for the UI).</li>
+<li>Compositor frames are associated with a “surface”, representing the place where they will appear on screen.</li>
+<li>Surfaces can embed other surfaces. The browser UI embeds a render. Renders can embed other renders for cross-origin iframes(a.k.a. site isolation, “out of process iframe” or OOPIF).</li>
+<li>The Display compositor runs on the Viz Compositor Thread in the GPU process. It’s part of the viz service(short for “visuals”).</li>
+<li>The Display compositor synchronizes the incoming frames and understands the dependencies betweens embedded surfaces(“surface aggregation”).</li>
+<li>Viz uses skia to display each quad in the CompositorFrame. This allow the compositor to draw using any backend(GL, Vulkan, Metal, DX12) supported by skia, similar to raster.</li>
+<li>The display compositor’s output is double-buffered.</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="http://bit.ly/lifeofapixel">Life of a Pixel</a></li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Chromium/">Chromium</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

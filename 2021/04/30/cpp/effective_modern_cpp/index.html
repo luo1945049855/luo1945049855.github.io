@@ -1,0 +1,741 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Effective Modern CPP | 业精于勤，荒于嬉。行成于思，毁于随。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="dayoluo">
+    
+
+    
+    <meta name="description" content="RValue &amp;&amp; LValue RValues correspond to temporary objectsLvalues correspond to objects you can refer to, either by name or by following a pointer or lvalue reference.  LValues usually can be ta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Modern CPP">
+<meta property="og:url" content="https://luo1945049855.github.io/2021/04/30/cpp/effective_modern_cpp/index.html">
+<meta property="og:site_name" content="业精于勤，荒于嬉。行成于思，毁于随。">
+<meta property="og:description" content="RValue &amp;&amp; LValue RValues correspond to temporary objectsLvalues correspond to objects you can refer to, either by name or by following a pointer or lvalue reference.  LValues usually can be ta">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-29T14:57:31.679Z">
+<meta property="article:author" content="dayoluo">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="业精于勤，荒于嬉。行成于思，毁于随。" type="application/atom+xml">
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="业精于勤，荒于嬉。行成于思，毁于随。">业精于勤，荒于嬉。行成于思，毁于随。</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:luo1945049855.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/04/30/cpp/effective_modern_cpp/" title="Effective Modern CPP" itemprop="url">Effective Modern CPP</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="dayoluo" target="_blank" itemprop="author">dayoluo</a>
+		
+  <p class="article-time">
+    <time datetime="2021-04-29T16:00:00.000Z" itemprop="datePublished"> Published 2021-04-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RValue-amp-amp-LValue"><span class="toc-number">1.</span> <span class="toc-text">RValue &amp;&amp; LValue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Smart-Pointers"><span class="toc-number">2.</span> <span class="toc-text">Smart Pointers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Template"><span class="toc-number">3.</span> <span class="toc-text">Template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perfect-Forwarding"><span class="toc-number">4.</span> <span class="toc-text">Perfect Forwarding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Uniform-Initialization"><span class="toc-number">5.</span> <span class="toc-text">Uniform Initialization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Special-Member-Function-Generation"><span class="toc-number">6.</span> <span class="toc-text">Special Member Function Generation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Expression"><span class="toc-number">7.</span> <span class="toc-text">Lambda Expression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Concurrency-API"><span class="toc-number">8.</span> <span class="toc-text">Concurrency API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exception"><span class="toc-number">9.</span> <span class="toc-text">Exception</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#auto-amp-amp-decltype"><span class="toc-number">10.</span> <span class="toc-text">auto &amp;&amp; decltype()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#emplace-back"><span class="toc-number">11.</span> <span class="toc-text">emplace_back</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#enum-class-scoped-enum"><span class="toc-number">12.</span> <span class="toc-text">enum class (scoped enum)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete"><span class="toc-number">13.</span> <span class="toc-text">&#x3D;delete</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constexpr"><span class="toc-number">14.</span> <span class="toc-text">constexpr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mutable"><span class="toc-number">15.</span> <span class="toc-text">mutable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function%E2%80%99s-Reference-Qualifiers"><span class="toc-number">16.</span> <span class="toc-text">Function’s Reference Qualifiers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RVO-Return-Value-Optimization"><span class="toc-number">17.</span> <span class="toc-text">RVO(Return Value Optimization)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSO-Small-String-Optimization"><span class="toc-number">18.</span> <span class="toc-text">SSO(Small String Optimization)</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="RValue-amp-amp-LValue"><a href="#RValue-amp-amp-LValue" class="headerlink" title="RValue &amp;&amp; LValue"></a>RValue &amp;&amp; LValue</h2><ul>
+<li><p><code>RValues</code> correspond to temporary objects<br><code>Lvalues</code> correspond to objects you can refer to, either by name or by following a pointer or lvalue reference.</p>
+</li>
+<li><p><code>LValues</code> usually can be taken address, while <code>RValues</code> can’t.</p>
+</li>
+<li><p>The type of an expression is independent of whether the expression is an lvalue or an rvalue.<br>A parameter of rvalue reference type, itself is an lvalue.</p>
+</li>
+<li><p><code>RValues</code> can’t bind to lvalue references, unless they’re lvalue-references-to-const.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Container, <span class="keyword">typename</span> Index&gt;</span><br><span class="line"><span class="function"><span class="keyword">decltype</span>(<span class="keyword">auto</span>) <span class="title">authAndAccess</span><span class="params">(Container&amp; c, Index i)</span></span></span><br><span class="line"><span class="function"><span class="title">authAndAccess</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, <span class="number">0</span>)</span></span>; <span class="comment">// compile error.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Container, <span class="keyword">typename</span> Index&gt;</span><br><span class="line"><span class="function"><span class="keyword">decltype</span>(<span class="keyword">auto</span>) <span class="title">authAndAccess</span><span class="params">(<span class="keyword">const</span> Container&amp; c, Index i)</span></span></span><br><span class="line"><span class="function"><span class="title">authAndAccess</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, <span class="number">0</span>)</span></span>; <span class="comment">// ok.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Reference Collapsing:<br>If either reference is an lvalue reference, the result is an lvalue reference.<br>Otherwise(i.e.,if both are rvalue reference) the result is an rvalue reference.</p>
+</li>
+<li><p>Reference Collapsing occurs in four contexts:</p>
+</li>
+</ul>
+<ol>
+<li><p><code>template</code> instantiation.</p>
+</li>
+<li><p>generation for <code>auto</code> variables.</p>
+</li>
+<li><p>generation and use of <code>typedef</code>s and alia declarations.</p>
+</li>
+<li><p>use of <code>decltype</code>.</p>
+</li>
+</ol>
+<h2 id="Smart-Pointers"><a href="#Smart-Pointers" class="headerlink" title="Smart Pointers"></a>Smart Pointers</h2><ul>
+<li><p><code>control block</code> contains:<br>reference count;<br>weak count;<br>a copy of custom deleter;<br>a copy of custom allocator;</p>
+</li>
+<li><p>constructing more than one std::shared_ptr from a single raw pointer, undefined behavior.<br><code>std::enable_shared_from_this&lt;T&gt;</code> which using <code>The Curiously Recurring Template Pattern(CRTP)</code> can solve this problem.</p>
+</li>
+<li><p>std::shared_ptr can be created from a std::unique_ptr.</p>
+</li>
+<li><p><code>std::shared_ptr&lt;T&gt; sp(new T[size], delete[])</code> isn’t recommended;</p>
+</li>
+<li><p>std::make_shared allocates <code>a single chunk of memory</code> to hold both the Widget object and the control block.</p>
+</li>
+<li><p>std::unique_ptr&lt;T, deleter&gt; the type of deleter is <code>part of the type</code> of the smart pointer, so pointed-to types must be complete when compiler-generated special functions.</p>
+</li>
+</ul>
+<h2 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h2><ul>
+<li>SFINAE(Substitution Failure Is Not An Error) &amp;&amp; std::enable_if</li>
+<li>std::is_integral</li>
+<li>std::is_same</li>
+<li>std::decay</li>
+<li>std::is_base_of</li>
+<li>static_assert</li>
+<li>std::is_constructible</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">template</span> &lt;</span><br><span class="line">        <span class="keyword">typename</span> T,</span><br><span class="line">        <span class="keyword">typename</span> = <span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;</span><br><span class="line">          !<span class="built_in">std</span>::is_base_of&lt;Person, <span class="built_in">std</span>::<span class="keyword">decay_t</span>&lt;T&gt;&gt;::value &amp;&amp; </span><br><span class="line">          !<span class="built_in">std</span>::is_integral&lt;<span class="built_in">std</span>::<span class="keyword">remove_reference_t</span>&lt;T&gt;&gt;::value</span><br><span class="line">        &gt;</span><br><span class="line">    &gt;</span><br><span class="line">    <span class="keyword">explicit</span> Person(T&amp;&amp; n) : name(<span class="built_in">std</span>::forward&lt;T&gt;(n)) &#123;</span><br><span class="line">        <span class="keyword">static_assert</span>(<span class="built_in">std</span>::is_constructible&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, T&gt;::value, </span><br><span class="line">        <span class="string">&quot;Parameter n can&#x27;t be used to construct a std::string&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Person</span><span class="params">(<span class="keyword">int</span> idx)</span></span></span><br><span class="line"><span class="function">    : <span class="title">name</span><span class="params">(nameFromIdx(idx))</span></span></span><br><span class="line"><span class="function">    </span>&#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> name;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Arrays and Functions can decay into pointers.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">someFunc</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">double</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">(T param)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f2</span><span class="params">(T&amp; param)</span></span>;</span><br><span class="line"></span><br><span class="line">f1(someFunc); <span class="comment">// param deduced as ptr-to-func. void(*)(int, double);</span></span><br><span class="line">f2(someFunc); <span class="comment">// param deduced as ref-to-func. void(&amp;)(int, double);</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Function can’t declare parameters that are truly arrays, they can declare parameters that are <code>reference to array</code> which interestingly enables creation of a template that deduces <code>the number of elements</code> that an an array contains:</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="built_in">std</span>::<span class="keyword">size_t</span> N&gt;</span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="built_in">std</span>::<span class="keyword">size_t</span> <span class="title">arraySize</span><span class="params">(T (&amp;)[N])</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> N;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Alias Templates</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*FP)</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp;)</span></span>;    <span class="comment">// typedef</span></span><br><span class="line"><span class="keyword">using</span> FP = <span class="keyword">void</span> (*) (<span class="keyword">int</span>, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp;);  <span class="comment">// alias declaration</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> MyAllocList = <span class="built_in">std</span>::<span class="built_in">list</span>&lt;T, MyAlloc&lt;T&gt;&gt;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Perfect-Forwarding"><a href="#Perfect-Forwarding" class="headerlink" title="Perfect Forwarding"></a>Perfect Forwarding</h2><ul>
+<li><p>Function templates that take arbitrary arguments and forward them to other functions such that the target functions receive <code>exactly the same</code> arguments.</p>
+</li>
+<li><p>RValue references should be unconditionally cast to rvalues, because they’re always bound to rvalues.<br>Universal references should be conditionally case to rvalues, because they’re only sometimes bound to rvalues.</p>
+</li>
+<li><p>Do the same thing for rvalue references and universal references being returned from functions that return by value.</p>
+</li>
+<li><p>Never apply <code>std::move</code> or <code>std::forward</code> to local objects if they would otherwise be eligible for the <code>return value optimization</code>.</p>
+</li>
+<li><p>Functions taking <code>universal references</code> are the greediest functions in C++.</p>
+</li>
+<li><p>When a <code>template instantiation</code> and <code>non-template function</code> are equally good matches for a function call, the normal function is preferred.</p>
+</li>
+<li><p>The kind of arguments that can’t be perfect-forwarded:</p>
+<ul>
+<li><p>Braced initializers.</p>
+<p>A braced initializer to a function template parameter that’s not declared to be a <code>std::initializer_list</code> is decreed to be, as the Standard puts it, a “non-deduced context.”<br>Compilers are forbidden from deducing a type for the expression {1, 2, 3}, because fwd’s parameter isn’t declared to be a <code>std::initializer_list</code>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; v)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fwd</span><span class="params">(T&amp; v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  f(<span class="built_in">std</span>::forward&lt;T&gt;(v));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f (&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;);  <span class="comment">// ok.</span></span><br><span class="line">fwd(&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;); <span class="comment">// error.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>0 or NULL as null pointers.</p>
+<p>0 and NULL will be deduced to integral type(typically int).</p>
+</li>
+<li><p>declaration-only integral <code>static const</code> data members.</p>
+<p>fwd’s parameter is a universal reference, and references, in the code generated by compilers, are usually treated like pointers.<br>In the program’s underlying binary code(and on the hardware), <code>pointers and references</code> are essentially the same thing.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">std</span>::<span class="keyword">size_t</span> MinVals = <span class="number">28</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; widgetData;</span><br><span class="line">widgetData.reserve(Widget::MinVals); <span class="comment">// ok.</span></span><br><span class="line"></span><br><span class="line">f(Widget::MinVals);   <span class="comment">// ok.</span></span><br><span class="line">fwd(Widget::MinVals); <span class="comment">// error. link error.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>overloaded function names and template names.</p>
+<p>void f(int (*pf)(int));<br>void f(int pf(int));    // same to above.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">processVal</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">processVal</span><span class="params">(<span class="keyword">int</span> value, <span class="keyword">int</span> priority)</span></span>;</span><br><span class="line">fwd(processVal); <span class="comment">// error! which processVal.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Bitfields</p>
+<p>fwd’s parameter is a reference, h.totalLength is a non-const bitfield.</p>
+<p>The C++ Standard: “A non-const reference shall not be bound to a bit-field.” But reference-to-const is allowed.</p>
+<p>There’s no way to create a pointer to arbitrary bits(C++ dictates that the smallest thing you can point to is a char).</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IPv4Helper</span> &#123;</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="keyword">uint32_t</span> version: <span class="number">4</span>,</span><br><span class="line">                IHL: <span class="number">4</span>,</span><br><span class="line">                DSCP: <span class="number">6</span>,</span><br><span class="line">                ECN: <span class="number">2</span>,</span><br><span class="line">                totalLength: <span class="number">16</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">IPv4Helper h;</span><br><span class="line">f(h.totalLength); <span class="comment">// ok.</span></span><br><span class="line">fwd(h.totalLength); <span class="comment">// error.</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Uniform-Initialization"><a href="#Uniform-Initialization" class="headerlink" title="Uniform Initialization"></a>Uniform Initialization</h2><ul>
+<li>Function calls using the braced initialization syntax <code>strongly prefer</code> the overloads taking <code>std::initializer_list</code>.</li>
+<li><code>Narrowing Conversion</code> are prohibited inside braced initializers.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Widget(<span class="keyword">int</span> i, <span class="keyword">bool</span> b);</span><br><span class="line">    Widget(<span class="keyword">int</span> i, <span class="keyword">double</span> d);</span><br><span class="line">    Widget(<span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;<span class="keyword">int</span>&gt; il);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Widget w1&#123;<span class="number">10</span>, <span class="literal">true</span>&#125;; <span class="comment">// calls std::initializer_lsit&lt;int&gt;</span></span><br><span class="line">                     <span class="comment">// (10 and true convert to int)</span></span><br><span class="line">Widget w2&#123;<span class="number">10</span>, <span class="number">5.0</span>&#125;;  <span class="comment">// error! </span></span><br><span class="line">                     <span class="comment">// narrowing conversions(5.0 can&#x27;t be exactly represented by int).</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>The only real difference between <code>auto</code> and <code>template</code> type deduction is that <code>auto</code> assumes that a <code>braced initializer</code> represents a <code>std::initializer_list</code>, but template type deduction doesn’t.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> x = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3.0</span>&#125;; <span class="comment">// error! can&#x27;t deduce T for std::initializer_list&lt;T&gt; </span></span><br><span class="line">                      <span class="comment">// because int and double are different types</span></span><br><span class="line"><span class="keyword">auto</span> x1 = &#123;<span class="number">11</span>, <span class="number">23</span>, <span class="number">9</span>&#125;; <span class="comment">// x&#x27;s type is std::initializer_list&lt;int&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T param)</span></span>;</span><br><span class="line">f(&#123;<span class="number">11</span>, <span class="number">23</span>, <span class="number">9</span>&#125;); <span class="comment">// error! can&#x27;t deduce type for T</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Empty braces mean no arguments, not an empty std::initializer_list.<br>Put empty braces inside <code>parentheses</code> or <code>braces</code> demarcating what you’re passing.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Widget w1&#123;&#125;;   <span class="comment">// calls default ctor.</span></span><br><span class="line"><span class="function">Widget <span class="title">w2</span><span class="params">(&#123;&#125;)</span></span>; <span class="comment">// std::initializer_list with empty list.</span></span><br><span class="line">Widget w3&#123;&#123;&#125;&#125;; <span class="comment">// std::initializer_list with empty list.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>std::vector&lt;number type&gt;</code> use brace initializer</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v1</span><span class="params">(<span class="number">10</span>, <span class="number">20</span>)</span></span>; <span class="comment">// use non-std::initializer_list ctor:</span></span><br><span class="line">                             <span class="comment">// 10-element all have value of 20.</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2&#123;<span class="number">10</span>, <span class="number">20</span>&#125;; <span class="comment">// use std::initializer_list ctor:</span></span><br><span class="line">                             <span class="comment">// 2-element values are 10, 20.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Special-Member-Function-Generation"><a href="#Special-Member-Function-Generation" class="headerlink" title="Special Member Function Generation"></a>Special Member Function Generation</h2><p>C++98:</p>
+<ul>
+<li><p>These functions are generated only if they’re needed,<br>i.e., if some code uses them without their being expressly declared in the class.</p>
+</li>
+<li><p>Generated special member functions are implicitly <code>public</code> and <code>inline</code> and<br><code>nonvirtual</code>(unless destructor in a derived class inheriting from a base class with a virtual destructor).</p>
+</li>
+<li><p>default constructor: no constructor at all(prevent constructor arguments are required)</p>
+</li>
+<li><p>destructor: noexcept by default. virtual only if base class destructor is virtual.</p>
+<p><code>delete</code> of <code>typeid</code> on a derived class object through <code>a base class pointer</code> or <code>reference</code> yield undefined or misleading results.</p>
+</li>
+<li><p>copy constructor:<br>deleted if class declares a move operation.<br>generation of this function in a class with user-declared <code>copy assignment operator</code> or <code>destructor</code> is deprecated.</p>
+</li>
+<li><p>copy assignment:<br>deleted if class declares a move operation.<br>generation of this function in a class with user-declared <code>copy constructor</code> or <code>destructor</code> is deprecated.</p>
+</li>
+</ul>
+<p>C++11:</p>
+<ul>
+<li><p>memberwise move consits of move operations on <code>data members</code><br>and <code>base classes</code> that support move operations, but a copy operation for those that don’t.</p>
+</li>
+<li><p>The two move operations, if you declare either, that prevents compilers from generating the other.</p>
+</li>
+<li><p>Move operations won’t be generated for any class that explicitly declared a copy operation.</p>
+</li>
+<li><p>Declaring a move operation in a class causes compilers to disable the copy operations.</p>
+</li>
+<li><p>User-defined destructor has no impact on compiler’s generated copy operations,<br>because that will break too much legacy code.</p>
+</li>
+<li><p>User-defined destructor prevents compiler from generating move operations.</p>
+</li>
+<li><p>Template Member Functions don’t preventing compiler from generating the special member functions.</p>
+</li>
+<li><p>move constructor: no copy, no move, no destructor.</p>
+</li>
+<li><p>move assignment: no copy, no move, no destructor.</p>
+</li>
+</ul>
+<h2 id="Lambda-Expression"><a href="#Lambda-Expression" class="headerlink" title="Lambda Expression"></a>Lambda Expression</h2><ul>
+<li><p><code>std::function</code> object typically uses more memory that auto-declared object.<br><code>std::function</code> object is almost certain to be slower that calling it via an auto-declared object.</p>
+</li>
+<li><p><code>std::bind</code> all arguments passed to <code>bind objects</code> are passed by reference using <code>perfect-forwarding</code>.</p>
+</li>
+<li><p>Each lambda causes compilers to generate a unique <code>closure class</code>(compile time).</p>
+<p>By default, the <code>operator()</code> member function inside the closure class generated from a lambda is <code>const</code>.<br>If the lambda were declared <code>mutable</code>, <code>operator()</code> in its closure class would not be declared <code>const</code>.</p>
+<p><code>closure object</code>(runtime) may generally be copied, so it’s possible to have multiple closures of a closure type corresponding to a single lambda.</p>
+</li>
+<li><p>std::all_of</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::all_of(</span><br><span class="line">  <span class="built_in">std</span>::begin(container), <span class="built_in">std</span>::end(container), </span><br><span class="line">    [&amp;](<span class="keyword">const</span> ConstElem&amp; value) &#123; reutn value % divisor == <span class="number">0</span>; &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>init capture(generalized lambda capture)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> func = [pw = <span class="built_in">std</span>::move(pw)]() &#123;...&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>C++14 availing ourselves of the standard suffixes for seconds(s), milliseconds(ms), hours(h). These suffixes are implemented in the <code>std::literals</code> namespace.</p>
+</li>
+</ul>
+<h2 id="Concurrency-API"><a href="#Concurrency-API" class="headerlink" title="Concurrency API"></a>Concurrency API</h2><ul>
+<li><p>Hardware threads: CPU threads.<br>Software threads: OS threads(System threads).<br>std::threads: objects in a C++ process.</p>
+<p>When there are more ready-to-run <code>software threads</code> than <code>hardware threads</code>, the <code>thread scheduler(OS)</code> time-slices the software threads on the hardware.</p>
+<p><code>Context Switches</code> increase the overall thread management overhead of the system.</p>
+<p>They can be particularly costly when the <code>hardware thread</code> on which a <code>software thread</code> is scheduled<br>is on a <code>different core</code> that was the case for the software thread during its <code>last time-slice</code> because of <code>CPU caches</code>.</p>
+</li>
+<li><p><code>std::future</code> can get return value of an async task, even <code>exception</code> can be get access to.</p>
+<p><code>std::launch::deferred</code> launch policy means that f may run only when <code>get</code> or <code>wait</code> is called on the future returned by <code>std::async</code>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fut = <span class="built_in">std</span>::async(doAsyncWork); <span class="comment">// doAsyncWork may throw.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (fut.wait_for(<span class="number">0</span>s) == </span><br><span class="line">    <span class="built_in">std</span>::future_status::deferred)) &#123;&#125; <span class="comment">// check to see if task was deferred...</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>If you try to create threads more than the system can provide, a <code>std::system_error</code> exception is thrown.</p>
+</li>
+<li><p>Invoking <code>join</code> or <code>detach</code> on an unjoinable thread yields <code>undefined behavior</code>.</p>
+</li>
+<li><p><code>shared state</code> is the place where callee’s result is stored.</p>
+<p>caller(std::future) &lt;——[shared state]——— callee (std::promise)</p>
+</li>
+<li><p>The destructor for the <code>last future</code> referring to a <code>shared state</code> for a <code>non-deferred task</code> launched via <code>std::async</code> blocks until the task completes.</p>
+<p>For asynchronously running tasks, this is akin to an implicit <code>detach</code> on the underlying thread.<br>For <code>deferred tasks</code> for which this is the final future, it means that the deferred task will never run.</p>
+</li>
+<li><p>A <code>std::packaged_task</code> object prepares a function(or other callable object) for asynchronous execution by wrapping it such that its result is put into a <code>shared state</code>.<br>The future created by <code>std::packaged_task</code> doesn’t satisfy above conditions.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calcValue</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">std</span>::packaged_task&lt;<span class="title">int</span><span class="params">()</span>&gt; <span class="title">pt</span><span class="params">(calcValue)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> fut = pt.get_future();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">std</span>::thread <span class="title">t</span><span class="params">(<span class="built_in">std</span>::move(pt))</span></span>; <span class="comment">// it&#x27;s upto thread, not future.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::async(<span class="built_in">std</span>::move(pt)); <span class="comment">// no reason to don&#x27;t use std::async directly.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>std::promise</code> and <code>std::future</code> can be used for event communication.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::promise&lt;<span class="keyword">void</span>&gt; p;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">react</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">detect</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="function"><span class="built_in">std</span>::thread <span class="title">t</span><span class="params">([]</span></span></span><br><span class="line"><span class="function"><span class="params">  &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    p.get_future().wait();</span></span></span><br><span class="line"><span class="function"><span class="params">    react();</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line">  ... // some work prior to call to react.</span><br><span class="line"></span><br><span class="line">  p.set_value();</span><br><span class="line"></span><br><span class="line">  t.jon();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// suspend then unsuspend not just one reacting task, but many.</span></span><br><span class="line"><span class="comment">// std::shared_future instead of std::future.</span></span><br><span class="line"><span class="built_in">std</span>::promise&lt;<span class="keyword">void</span>&gt; p;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">detect</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> sf = p.get_future().share();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::thread&gt; vt;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadsToRun; ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    vt.emplace_back([sf] &#123; sf.wait(); react(); &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ... <span class="comment">// some work prior to call to react.</span></span><br><span class="line"></span><br><span class="line">  p.set_value();</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">auto</span>&amp;t : vt)</span><br><span class="line">  &#123;</span><br><span class="line">    t.join();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>std::atomic</code> implemented using special machine instructions that are more efficient than <code>mutex</code>.</p>
+</li>
+<li><p><code>volatile</code> for special memory. <code>std::atomic</code> for concurrency.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">std</span>::atomic&lt;<span class="keyword">int</span>&gt; <span class="title">ac</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">volatile</span> <span class="keyword">int</span> <span class="title">vc</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*------thread1-------*/</span>      <span class="comment">/*------thread2-------*/</span>      </span><br><span class="line">       ++ac;                        ++ac;</span><br><span class="line">       ++vc;                        ++vc;</span><br></pre></td></tr></table></figure>
+
+<p>Each increment consists of <code>reading vc&#39;s value</code>, <code>incrementing the value</code>, <code>writing the result back</code>.<br>But these operations are not guaranteed to proceed atomically.</p>
+</li>
+<li><p>Generally, compilers are permitted to reorder unrelated assignments:</p>
+<p>Even if compilers don’t reorder them, the underlying <code>hardware</code> might do it.</p>
+<p><code>std::atomic</code> using <code>sequential consistency</code> imposes restrictions on reorder, no code that precedes a <code>write</code> of a <code>std::atomic</code> may take place afterwards.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = b;</span><br><span class="line">x = y;</span><br><span class="line"><span class="comment">// compiler may generally reorder them as:</span></span><br><span class="line">x = y;</span><br><span class="line">a = b;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>volatile</code> can’t do above thing. but it can tell compilers that we’re dealing with <code>special memory</code>,<br>“Don’t perform any optimizations on operations on this memory”.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//##########1</span></span><br><span class="line">x = <span class="number">10</span>; <span class="comment">// eliminated.</span></span><br><span class="line">x = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//##########2</span></span><br><span class="line"><span class="keyword">auto</span> y = x;</span><br><span class="line">y = x;  <span class="comment">// eliminated.</span></span><br><span class="line">x = <span class="number">10</span>; <span class="comment">// eliminated.</span></span><br><span class="line">x = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//#########3</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::atomic&lt;<span class="keyword">int</span>&gt; <span class="title">y</span><span class="params">(x.load())</span></span>;</span><br><span class="line">y.store(x.load());</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;optimize&quot;</span></span><br><span class="line"><span class="keyword">register</span> = x.load();</span><br><span class="line"><span class="function"><span class="built_in">std</span>::atomic&lt;<span class="keyword">int</span>&gt; <span class="title">y</span><span class="params">(<span class="keyword">register</span>)</span></span>;</span><br><span class="line">y.store(<span class="keyword">register</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><ul>
+<li><p>Functions offering the strong exception safety guarantee(i.e., the <code>strong guarantee</code>) assure callers that if an exception arises, the state of the program remains as it was prior to the call.</p>
+</li>
+<li><p>Applying <code>noexcept</code> to functions that won’t produce exceptions: it permits compilers to generate better object code:</p>
+<p>In a <code>noexcept</code> function, optimizers needn’t keep the runtime stack in an unwindalbe state if an exception would propagate out of the function.</p>
+<p>nor must they ensure that objects in a <code>noexcept</code> function are destroyed in the inverse order of construction should an exception leave the function.</p>
+</li>
+<li><p><code>noexcept(expression)</code> result is true if the potential exception of the expression is empty.</p>
+</li>
+<li><p>Destructor is implicitly <code>noexcept</code> unless a data member of the class is of a type that expressly states that its destructor may emit exceptions(e.g., declares it “noexcept(false)”).</p>
+</li>
+<li><p>If an exception propagates out of a thread’s primary function,<br>or a <code>noexcept</code> specification is violated, local objects may not be destroyed,<br><code>std::abort</code> or an exit function(i.e., <code>std::_Exit, std::exit, std::quick_exit</code>) is called.</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">size_t</span> <span class="title">N</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">swap</span>(<span class="title">T</span> (&amp;<span class="title">a</span>)[<span class="title">N</span>], <span class="title">T</span> (&amp;<span class="title">b</span>)[<span class="title">N</span>]) <span class="title">noexcept</span>(<span class="title">noexcept</span>(<span class="title">swap</span>(*<span class="title">a</span>, *<span class="title">b</span>)));</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="auto-amp-amp-decltype"><a href="#auto-amp-amp-decltype" class="headerlink" title="auto &amp;&amp; decltype()"></a>auto &amp;&amp; decltype()</h2><ul>
+<li>C++11 <code>trailing return type</code> syntax:</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Container, <span class="keyword">typename</span> Index&gt;</span><br><span class="line">auto authAndAccess(Container&amp; c, Index i) -&gt;decltype(c[i])</span><br><span class="line">&#123;</span><br><span class="line">    authenticateUser();</span><br><span class="line">    <span class="keyword">return</span> c[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>C++14 permits <code>auto</code> to indicate that a function’s return type.<br>C++14 lambdas may use <code>auto</code> in parameter declarations.<br>However, these uses of <code>auto</code> employ <code>template type deduction</code> not <code>auto</code> type deduction.</li>
+<li>Template Type Deduction, the reference-ness of an initializing expression is ignored, so <code>auto</code> return type deduction will strip off the reference</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Container, <span class="keyword">typename</span> Index&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">authAndAccess</span><span class="params">(Container&amp; c, Index i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    authenticateUser();</span><br><span class="line">    <span class="keyword">return</span> c[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; d;</span><br><span class="line">...</span><br><span class="line">autoAndAccess(d, <span class="number">5</span>) = <span class="number">10</span>; <span class="comment">// reference striped. error.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>decltype(auto)</code> <code>auto</code> specifies that the type is to be deduced, and <code>decltype</code> says that <code>decltype</code> rules should be used during the deduction.</p>
+<p><code>decltype(auto)</code> isn’t limited to function return types but also <code>declaring variables</code>.</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Container, <span class="keyword">typename</span> Index&gt;</span><br><span class="line"><span class="function"><span class="keyword">decltype</span>(<span class="keyword">auto</span>) <span class="title">authAndAccess</span><span class="params">(Container&amp; c, Index i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    authenticateUser();</span><br><span class="line">    <span class="keyword">return</span> c[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; d;</span><br><span class="line">...</span><br><span class="line">autoAndAccess(d, <span class="number">5</span>) = <span class="number">10</span>; <span class="comment">// ok.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ************************ </span></span><br><span class="line">Widget w;</span><br><span class="line"><span class="keyword">const</span> Widget&amp; cw = w;</span><br><span class="line"><span class="keyword">auto</span> myWidget1 = cw; <span class="comment">// auto type deduction: myWidget1&#x27;s type is Widget</span></span><br><span class="line"><span class="keyword">decltype</span>(<span class="keyword">auto</span>) myWidget2 = cw; <span class="comment">// decltype deduction: myWidget2&#x27;s type is const Widget&amp;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>decltype</code> to a name yields the type <code>T</code> for that name.<br><code>decltype</code> to a lvalue expression other than a name yields <code>T&amp;</code>.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">decltype</span>(x) is <span class="keyword">int</span>.</span><br><span class="line"><span class="keyword">decltype</span>((x)) is <span class="keyword">int</span>&amp;.</span><br></pre></td></tr></table></figure>
+
+<h2 id="emplace-back"><a href="#emplace-back" class="headerlink" title="emplace_back"></a>emplace_back</h2><ul>
+<li><p>emplace_back; emplace_front; emplace;<br>emplace_hint(associative container); emplace_after(std::forward_list)</p>
+</li>
+<li><p><code>Insertion functions</code> take objects to be inserted.<br><code>Emplacement functions</code> task constructor arguments for obejcts to be inserted which avoid the creation and destruction of <code>temporary objects</code>.</p>
+</li>
+<li><p>copy initialization &amp;&amp; direct initialization</p>
+<p>direct initialization can use <code>explicit</code> constructor.</p>
+<p>emplacement functions use direct initialization, which means they may use <code>explicit</code> constructors.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::regex r1 = <span class="literal">nullptr</span>; <span class="comment">// error! copy initialization</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::regex <span class="title">r2</span><span class="params">(<span class="literal">nullptr</span>)</span></span>;  <span class="comment">// compiles. direct initialization</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="enum-class-scoped-enum"><a href="#enum-class-scoped-enum" class="headerlink" title="enum class (scoped enum)"></a>enum class (scoped enum)</h2><ul>
+<li><p><code>enum class Color: std::uint32_t &#123; black, white, red &#125;</code></p>
+</li>
+<li><p>By default, the underlyng type for scoped enum is <code>int</code>. <code>std::underlying_type_t&lt;Color&gt;</code>.<br>Unscoped enums have no default underlying type.</p>
+</li>
+<li><p>Scoped enums may be forward-declared, because the underlying type for them is always known.<br>Unscoped enums may be forward-declared only if their declaration specifies an underlying type.</p>
+</li>
+</ul>
+<h2 id="delete"><a href="#delete" class="headerlink" title="=delete"></a>=delete</h2><ul>
+<li>Any functions may be deleted.</li>
+<li>Deleted functions can prevent use of template instantiations that should be disabled.<br>It’s not possible to give a member function template specialization a different access level from that of the main template.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isLucky</span><span class="params">(<span class="keyword">int</span> number)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isLucky</span><span class="params">(<span class="keyword">char</span>)</span> </span>= <span class="keyword">delete</span>; <span class="comment">// reject chars</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">processPointer</span><span class="params">(T* ptr)</span></span>;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="keyword">void</span> processPointer&lt;<span class="keyword">void</span>&gt;(<span class="keyword">void</span>*) = <span class="keyword">delete</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">processPointer</span><span class="params">(T* ptr)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">template</span> &lt;&gt;</span><br><span class="line">    <span class="keyword">void</span> processPointer&lt;<span class="keyword">void</span>&gt;(<span class="keyword">void</span>*);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h2><ul>
+<li><p><code>constexpr</code> indicated a value that’s not only constant, it’s known during compilation.</p>
+</li>
+<li><p><code>constexpr functions</code> produce compile-time constants when they are called with compile-time constants. if they’re called with values not known until runtime, they produce runtime values.</p>
+</li>
+<li><p>I/O statements are generally not permitted in <code>constexpr</code> functions.</p>
+</li>
+<li><p>The conditional <code>?:</code> operator can be used in place of if-else statements.<br><code>Recursion</code> can be used instead of loops.</p>
+</li>
+<li><p><code>constexpr functions</code> are limited to taking and returning <code>literal types</code>.</p>
+<p>In C++11, all built-in types except <code>void</code> qualify.<br>In C++11, <code>constexpr member functions</code> are implicitly const;<br>In C++14, the restrictions on <code>constexpr</code> functions are substantially looser.</p>
+<p>user-defined types may be literal too, because constructors and other member functions may be constexpr.</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++11</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> <span class="built_in">exp</span>)</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">exp</span> == <span class="number">0</span> ? <span class="number">1</span> : base * <span class="built_in">pow</span>(base, <span class="built_in">exp</span> - <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++14</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> <span class="built_in">exp</span>)</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> result = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">exp</span>; ++i)</span><br><span class="line">        result *= base;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// user-defined literal</span></span><br><span class="line"><span class="comment">// In C++11, setX, setY aren&#x27;t const and they have void return types.</span></span><br><span class="line"><span class="comment">// In C++14, setX, setY can be constexpr.</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">constexpr Point(double xVal = 0, double yVal = 0) noexcept  : x(xVal), y(yVal)  &#123;&#125; </span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">double</span> <span class="title">xValue</span><span class="params">()</span> <span class="keyword">const</span> <span class="keyword">noexcept</span> </span>&#123; <span class="keyword">return</span> x; &#125;  </span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">double</span> <span class="title">yValue</span><span class="params">()</span> <span class="keyword">const</span> <span class="keyword">noexcept</span> </span>&#123; <span class="keyword">return</span> y; &#125;  </span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus==201402L</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">double</span> newX)</span> <span class="keyword">noexcept</span> </span>&#123; x = newX; &#125;  </span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">double</span> newY)</span> <span class="keyword">noexcept</span> </span>&#123; y = newY; &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> __cplusplus==201103L</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">double</span> newX)</span> <span class="keyword">noexcept</span> </span>&#123; x = newX; &#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">double</span> newY)</span> <span class="keyword">noexcept</span> </span>&#123; y = newY; &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line"><span class="keyword">double</span> x, y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="mutable"><a href="#mutable" class="headerlink" title="mutable"></a>mutable</h2><ul>
+<li><code>const member functions</code> can change <code>mutable</code> data members.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Polynomial</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> RootsType = <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="function">RootsType <span class="title">roots</span><span class="params">()</span> <span class="keyword">const</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!rootAreValid)</span><br><span class="line">        &#123;</span><br><span class="line">            rootsAreValid = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rootsVals;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">mutable</span> <span class="keyword">bool</span> rootsAreValid &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">    <span class="keyword">mutable</span> RootsType rootsVals &#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Function’s-Reference-Qualifiers"><a href="#Function’s-Reference-Qualifiers" class="headerlink" title="Function’s Reference Qualifiers"></a>Function’s <code>Reference Qualifiers</code></h2><ul>
+<li>They make it possible to limit use of a member function to lvalues only or rvalues only.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span> &amp;</span>;  <span class="comment">// *this is an lvalue</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span> &amp;&amp;</span>; <span class="comment">// *this is an rvalue</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="RVO-Return-Value-Optimization"><a href="#RVO-Return-Value-Optimization" class="headerlink" title="RVO(Return Value Optimization)"></a>RVO(Return Value Optimization)</h2><ul>
+<li><p>the type of the local object is the same as that returned by the function.<br>the local object is what’s being returned.</p>
+</li>
+<li><p>If the conditions for the <code>RVO are met</code>, but compilers choose <code>not to perform copy elision</code>,<br>the object being returned must be treated as an <code>rvalue</code>.</p>
+</li>
+</ul>
+<h2 id="SSO-Small-String-Optimization"><a href="#SSO-Small-String-Optimization" class="headerlink" title="SSO(Small String Optimization)"></a>SSO(Small String Optimization)</h2><ul>
+<li>“small” strings (e.g., those with a capacity of no more than 15 characters)<br>are stored in a buffer within the <code>std::string</code> object. no heap-allocated storage is used.</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CPP/">CPP</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2021/06/28/windows/flicker_drawing/" title="Flicker Drawing">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Flicker Drawing</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2021/03/18/cpp/modern_cpp/"  title="Modern CPP">
+ <strong>下一篇：</strong><br/> 
+ <span>Modern CPP
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RValue-amp-amp-LValue"><span class="toc-number">1.</span> <span class="toc-text">RValue &amp;&amp; LValue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Smart-Pointers"><span class="toc-number">2.</span> <span class="toc-text">Smart Pointers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Template"><span class="toc-number">3.</span> <span class="toc-text">Template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perfect-Forwarding"><span class="toc-number">4.</span> <span class="toc-text">Perfect Forwarding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Uniform-Initialization"><span class="toc-number">5.</span> <span class="toc-text">Uniform Initialization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Special-Member-Function-Generation"><span class="toc-number">6.</span> <span class="toc-text">Special Member Function Generation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Expression"><span class="toc-number">7.</span> <span class="toc-text">Lambda Expression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Concurrency-API"><span class="toc-number">8.</span> <span class="toc-text">Concurrency API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exception"><span class="toc-number">9.</span> <span class="toc-text">Exception</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#auto-amp-amp-decltype"><span class="toc-number">10.</span> <span class="toc-text">auto &amp;&amp; decltype()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#emplace-back"><span class="toc-number">11.</span> <span class="toc-text">emplace_back</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#enum-class-scoped-enum"><span class="toc-number">12.</span> <span class="toc-text">enum class (scoped enum)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete"><span class="toc-number">13.</span> <span class="toc-text">&#x3D;delete</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constexpr"><span class="toc-number">14.</span> <span class="toc-text">constexpr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mutable"><span class="toc-number">15.</span> <span class="toc-text">mutable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function%E2%80%99s-Reference-Qualifiers"><span class="toc-number">16.</span> <span class="toc-text">Function’s Reference Qualifiers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RVO-Return-Value-Optimization"><span class="toc-number">17.</span> <span class="toc-text">RVO(Return Value Optimization)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSO-Small-String-Optimization"><span class="toc-number">18.</span> <span class="toc-text">SSO(Small String Optimization)</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CEF/" title="CEF">CEF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CPP/" title="CPP">CPP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Chromium/" title="Chromium">Chromium<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Frontend/" title="Frontend">Frontend<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Network/" title="Network">Network<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Project/" title="Project">Project<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Unicode/" title="Unicode">Unicode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>10</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
+		
+		<a href="/about" target="_blank" title="dayoluo">dayoluo</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
